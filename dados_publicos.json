@@ -1,0 +1,1984 @@
+{
+  "dashboard": {
+    "raca_ds": {
+      "Branca": 135,
+      "Parda": 111,
+      "Preta": 12,
+      "Indígena": 2,
+      "Amarela": 1,
+      "Marrom": 1
+    },
+    "sexo_ds": {
+      "Masculino": 142,
+      "Feminino": 119,
+      "Prefiro não informar": 1
+    },
+    "estado_civil_ds": {
+      "Casado (a)": 155,
+      "Solteiro (a)": 75,
+      "União Estável": 19,
+      "Divorciado": 10,
+      "Separado (a) Judicialmente": 1,
+      "Não Informado": 1,
+      "Solteiro": 1
+    },
+    "ident_genero_ds": {
+      "Mulher cisgênero": 72,
+      "Homen cisgênero": 65,
+      "Outro": 1,
+      "Homem transgênero": 1
+    },
+    "orientacao_sexual_ds": {
+      "Heterossexual": 242,
+      "Gay": 10,
+      "Outra": 6,
+      "Bissexual": 4
+    },
+    "tem_nome_social": {
+      "Não": 239,
+      "Sim": 23
+    },
+    "aa_tipo_ds": {
+      "Pessoas autodeclaradas pretas ou pardas": 19,
+      "Pessoas com algum tipo de deficiência física e/ou cognitiva": 2,
+      "Pessoas autodeclaradas indígenas": 1
+    },
+    "pais_formacao_ds": {
+      "Brasil": 256,
+      "Bolívia": 3,
+      "Cuba": 2,
+      "Venezuela": 1
+    },
+    "rm_rec_cnrm_ds": {
+      "Possuo 1(uma) residência médica": 147,
+      "Possuo 2(duas) residências médicas": 84,
+      "Possuo 3(três) residências médicas": 15
+    },
+    "tit_esp_amb_ds": {
+      "Possuo 1(um) título de especialista": 94,
+      "Possuo 2(dois) títulos de especialista": 22,
+      "Possuo 3(três) títulos de especialista": 6
+    },
+    "rm_1_esp_medica_ds": {
+      "Ginecologia e Obstetrícia": 66,
+      "Cirurgia Geral": 35,
+      "Anestesiologista": 29,
+      "Otorrinolaringologia": 22,
+      "Radiologia e Diagnóstico por Imagem": 17,
+      "Endoscopia": 14,
+      "Cirurgia Oncológica": 11,
+      "Gastroenterologia": 9,
+      "Patologia": 8,
+      "Coloproctologia": 7,
+      "Cirurgia do Aparelho Digestivo": 6,
+      "Cardiologia": 6,
+      "Clínica Médica": 4,
+      "Radioterapia": 4,
+      "Oncologia Clínica": 4,
+      "Cirurgia de Cabeça e Pescoço": 2,
+      "Mastologia": 2
+    },
+    "rm_2_esp_medica_ds": {
+      "Cirurgia Geral": 32,
+      "Clínica Médica": 14,
+      "Ginecologia e Obstetrícia": 7,
+      "Gastroenterologia": 6,
+      "Cirurgia do Aparelho Digestivo": 5,
+      "Mastologia": 5,
+      "Cardiologia": 5,
+      "Cirurgia Oncológica": 4,
+      "Coloproctologia": 4,
+      "Medicina de Família e Comunidade": 4,
+      "Endoscopia": 3,
+      "Oncologia Clínica": 2,
+      "Cirurgia Vascular": 2,
+      "Patologia": 1,
+      "Pediatria": 1,
+      "Medicina Intensiva": 1,
+      "Cirurgia Pediátrica": 1,
+      "Otorrinolaringologia": 1,
+      "Urologia": 1
+    },
+    "amb_1_esp_medica_ds": {
+      "Anestesiologista": 18,
+      "Otorrinolaringologia": 17,
+      "Ginecologia e Obstetrícia": 15,
+      "Radiologia e Diagnóstico por Imagem": 14,
+      "Cardiologia": 9,
+      "Cirurgia Geral": 7,
+      "Gastroenterologia": 7,
+      "Coloproctologia": 6,
+      "Endoscopia": 6,
+      "Cirurgia do Aparelho Digestivo": 6,
+      "Cirurgia Oncológica": 3,
+      "Mastologia": 3,
+      "Oncologia Clínica": 2,
+      "Patologia": 2,
+      "Radioterapia": 2,
+      "Clínica Médica": 1,
+      "Medicina Intensiva": 1,
+      "Medicina de Família e Comunidade": 1,
+      "Cirurgia de Cabeça e Pescoço": 1,
+      "Cirurgia Pediátrica": 1
+    },
+    "amb_2_esp_medica_ds": {
+      "Cirurgia Geral": 6,
+      "Ginecologia e Obstetrícia": 5,
+      "Cardiologia": 4,
+      "Medicina de Família e Comunidade": 3,
+      "Cirurgia Oncológica": 2,
+      "Clínica Médica": 2,
+      "Gastroenterologia": 2,
+      "Pediatria": 1,
+      "Otorrinolaringologia": 1,
+      "Anestesiologista": 1,
+      "Mastologia": 1
+    },
+    "curso_nome_limpo": {
+      "Colposcopia e Doenças do Trato Genital Inferior": 46,
+      "Ultrassonografia Mamária Diagnóstica e Intervencionista": 35,
+      "Anestesiologia Perioperatória e Sedação Segura": 31,
+      "Videolaringoscopia e Endoscopia Nasofaríngea": 23,
+      "Cirurgia Geral Minimamente Invasiva": 22,
+      "Cirurgia Ginecológica com Foco em Tumores Ginecológicos": 17,
+      "Colonoscopia Diagnóstica e Terapêutica no SUS": 15,
+      "Endoscopia Digestiva Alta Diagnóstica e Terapêutica": 12,
+      "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos": 10,
+      "Ecocardiografia Transtorácica Aplicada ao SUS": 10,
+      "Cirurgia Oncológica Avançada": 9,
+      "Anatomia Patológica com Ênfase em Oncologia e Diagnóstico Integrado": 8,
+      "Cirurgia Coloproctológica com Foco em Tumores Colorretais": 7,
+      "Endoscopia Digestiva Avançada e Procedimentos Terapêuticos": 7,
+      "Oncologia Clínica: Cânceres Prevalentes no SUS": 6,
+      "Radioterapia: Planejamento e Execução no SUS": 4
+    },
+    "regiao_nascimento": {
+      "Nordeste": 149,
+      "Sudeste": 66,
+      "Norte": 25,
+      "Centro-Oeste": 16,
+      "Sul": 3
+    },
+    "regiao_vaga": {
+      "Nordeste": 155,
+      "Sudeste": 61,
+      "Norte": 30,
+      "Centro-Oeste": 12,
+      "Sul": 4
+    },
+    "idade": [
+      38,
+      46,
+      35,
+      31,
+      33,
+      31,
+      32,
+      41,
+      38,
+      54,
+      40,
+      41,
+      34,
+      35,
+      41,
+      29,
+      54,
+      34,
+      39,
+      38,
+      36,
+      36,
+      27,
+      31,
+      47,
+      48,
+      42,
+      35,
+      43,
+      41,
+      32,
+      38,
+      33,
+      66,
+      42,
+      30,
+      39,
+      41,
+      39,
+      41,
+      37,
+      37,
+      32,
+      65,
+      35,
+      31,
+      39,
+      57,
+      35,
+      44,
+      35,
+      42,
+      46,
+      35,
+      33,
+      31,
+      30,
+      50,
+      33,
+      35,
+      32,
+      39,
+      38,
+      45,
+      35,
+      30,
+      39,
+      29,
+      37,
+      38,
+      40,
+      35,
+      38,
+      37,
+      34,
+      35,
+      33,
+      30,
+      68,
+      48,
+      39,
+      49,
+      36,
+      31,
+      31,
+      39,
+      41,
+      37,
+      32,
+      32,
+      34,
+      30,
+      36,
+      34,
+      31,
+      52,
+      47,
+      55,
+      30,
+      48,
+      38,
+      30,
+      39,
+      37,
+      40,
+      32,
+      34,
+      33,
+      40,
+      41,
+      39,
+      48,
+      36,
+      33,
+      50,
+      36,
+      33,
+      34,
+      36,
+      38,
+      47,
+      38,
+      41,
+      41,
+      36,
+      38,
+      30,
+      36,
+      66,
+      34,
+      33,
+      32,
+      37,
+      33,
+      45,
+      39,
+      38,
+      50,
+      56,
+      36,
+      36,
+      35,
+      71,
+      32,
+      34,
+      36,
+      30,
+      39,
+      36,
+      36,
+      41,
+      40,
+      30,
+      34,
+      44,
+      38,
+      42,
+      32,
+      35,
+      32,
+      40,
+      46,
+      31,
+      36,
+      45,
+      36,
+      33,
+      44,
+      32,
+      36,
+      35,
+      36,
+      33,
+      47,
+      39,
+      43,
+      38,
+      35,
+      40,
+      39,
+      33,
+      40,
+      34,
+      50,
+      32,
+      31,
+      44,
+      35,
+      37,
+      32,
+      30,
+      46,
+      39,
+      31,
+      46,
+      48,
+      42,
+      43,
+      31,
+      40,
+      31,
+      52,
+      28,
+      35,
+      34,
+      34,
+      36,
+      43,
+      31,
+      32,
+      34,
+      29,
+      31,
+      32,
+      38,
+      38,
+      35,
+      35,
+      42,
+      32,
+      31,
+      35,
+      28,
+      40,
+      37,
+      44,
+      68,
+      32,
+      42,
+      32,
+      30,
+      38,
+      43,
+      54,
+      38,
+      35,
+      51,
+      33,
+      32,
+      30,
+      36,
+      29,
+      43,
+      43,
+      38,
+      37,
+      33,
+      39,
+      35,
+      39,
+      42,
+      40,
+      45,
+      42,
+      35,
+      37,
+      38,
+      33,
+      35,
+      52,
+      39,
+      40
+    ],
+    "tempo_graduado": [
+      12,
+      9,
+      11,
+      4,
+      8,
+      4,
+      7,
+      17,
+      13,
+      28,
+      8,
+      16,
+      11,
+      11,
+      16,
+      5,
+      28,
+      9,
+      4,
+      12,
+      9,
+      2,
+      3,
+      6,
+      23,
+      8,
+      11,
+      6,
+      15,
+      9,
+      7,
+      13,
+      8,
+      40,
+      17,
+      6,
+      14,
+      9,
+      13,
+      13,
+      12,
+      12,
+      6,
+      41,
+      10,
+      7,
+      11,
+      27,
+      9,
+      18,
+      10,
+      11,
+      19,
+      9,
+      9,
+      6,
+      6,
+      25,
+      8,
+      9,
+      7,
+      13,
+      14,
+      20,
+      8,
+      5,
+      13,
+      0,
+      10,
+      13,
+      14,
+      10,
+      14,
+      12,
+      9,
+      7,
+      8,
+      5,
+      41,
+      24,
+      12,
+      7,
+      11,
+      6,
+      7,
+      12,
+      12,
+      9,
+      7,
+      6,
+      8,
+      6,
+      11,
+      8,
+      6,
+      28,
+      12,
+      23,
+      6,
+      25,
+      12,
+      5,
+      8,
+      10,
+      13,
+      7,
+      9,
+      7,
+      17,
+      10,
+      9,
+      11,
+      12,
+      5,
+      21,
+      10,
+      7,
+      8,
+      12,
+      6,
+      9,
+      11,
+      13,
+      13,
+      12,
+      10,
+      5,
+      12,
+      42,
+      7,
+      9,
+      8,
+      -2,
+      8,
+      11,
+      14,
+      12,
+      22,
+      33,
+      11,
+      10,
+      12,
+      43,
+      5,
+      10,
+      12,
+      5,
+      8,
+      8,
+      11,
+      7,
+      5,
+      6,
+      8,
+      17,
+      11,
+      12,
+      6,
+      11,
+      8,
+      13,
+      22,
+      6,
+      7,
+      12,
+      10,
+      8,
+      9,
+      6,
+      11,
+      8,
+      10,
+      6,
+      7,
+      4,
+      19,
+      10,
+      11,
+      14,
+      13,
+      8,
+      8,
+      10,
+      23,
+      8,
+      7,
+      6,
+      10,
+      13,
+      7,
+      6,
+      20,
+      14,
+      8,
+      20,
+      48,
+      7,
+      5,
+      5,
+      10,
+      6,
+      26,
+      4,
+      11,
+      10,
+      7,
+      11,
+      12,
+      7,
+      8,
+      8,
+      3,
+      6,
+      7,
+      1,
+      11,
+      10,
+      9,
+      6,
+      5,
+      0,
+      9,
+      4,
+      8,
+      12,
+      16,
+      44,
+      5,
+      13,
+      8,
+      4,
+      7,
+      18,
+      29,
+      13,
+      8,
+      27,
+      9,
+      7,
+      6,
+      12,
+      4,
+      15,
+      16,
+      14,
+      12,
+      9,
+      10,
+      11,
+      11,
+      14,
+      14,
+      9,
+      18,
+      7,
+      8,
+      10,
+      9,
+      10,
+      28,
+      14,
+      14
+    ],
+    "apropriacao_redes": {
+      "A": 181,
+      "E": 75,
+      "N": 6
+    },
+    "apropriacao_coordenacao": {
+      "A": 204,
+      "E": 53,
+      "N": 5
+    },
+    "apropriacao_gestao": {
+      "A": 198,
+      "E": 58,
+      "N": 6
+    },
+    "apropriacao_evidencias": {
+      "A": 246,
+      "E": 16
+    },
+    "experiencia_digital": {
+      "A": 150,
+      "E": 102,
+      "N": 10
+    },
+    "fluxo_regional": [
+      {
+        "Momento": "Nascimento",
+        "Região": "Nordeste",
+        "Quantidade": 149
+      },
+      {
+        "Momento": "Nascimento",
+        "Região": "Sudeste",
+        "Quantidade": 66
+      },
+      {
+        "Momento": "Nascimento",
+        "Região": "Norte",
+        "Quantidade": 25
+      },
+      {
+        "Momento": "Nascimento",
+        "Região": "Centro-Oeste",
+        "Quantidade": 16
+      },
+      {
+        "Momento": "Nascimento",
+        "Região": "Sul",
+        "Quantidade": 3
+      },
+      {
+        "Momento": "Graduação",
+        "Região": "Nordeste",
+        "Quantidade": 132
+      },
+      {
+        "Momento": "Graduação",
+        "Região": "Sudeste",
+        "Quantidade": 77
+      },
+      {
+        "Momento": "Graduação",
+        "Região": "Norte",
+        "Quantidade": 32
+      },
+      {
+        "Momento": "Graduação",
+        "Região": "Centro-Oeste",
+        "Quantidade": 9
+      },
+      {
+        "Momento": "Graduação",
+        "Região": "Sul",
+        "Quantidade": 6
+      },
+      {
+        "Momento": "CRM",
+        "Região": "Nordeste",
+        "Quantidade": 152
+      },
+      {
+        "Momento": "CRM",
+        "Região": "Sudeste",
+        "Quantidade": 63
+      },
+      {
+        "Momento": "CRM",
+        "Região": "Norte",
+        "Quantidade": 24
+      },
+      {
+        "Momento": "CRM",
+        "Região": "Centro-Oeste",
+        "Quantidade": 15
+      },
+      {
+        "Momento": "CRM",
+        "Região": "Sul",
+        "Quantidade": 6
+      },
+      {
+        "Momento": "Vaga",
+        "Região": "Nordeste",
+        "Quantidade": 155
+      },
+      {
+        "Momento": "Vaga",
+        "Região": "Sudeste",
+        "Quantidade": 61
+      },
+      {
+        "Momento": "Vaga",
+        "Região": "Norte",
+        "Quantidade": 30
+      },
+      {
+        "Momento": "Vaga",
+        "Região": "Centro-Oeste",
+        "Quantidade": 12
+      },
+      {
+        "Momento": "Vaga",
+        "Região": "Sul",
+        "Quantidade": 4
+      }
+    ]
+  },
+  "mapas": {
+    "rg_uf_ds": {
+      "Minas Gerais": 50,
+      "Piauí": 33,
+      "Ceará": 32,
+      "Bahia": 21,
+      "Rio Grande do Norte": 21,
+      "Maranhão": 16,
+      "Paraíba": 14,
+      "São Paulo": 10,
+      "Pará": 10,
+      "Pernambuco": 8,
+      "Goiás": 8,
+      "Rio de Janeiro": 6,
+      "Amazonas": 6,
+      "Roraima": 4,
+      "Mato Grosso": 3,
+      "Rondônia": 3,
+      "Mato Grosso do Sul": 3,
+      "Sergipe": 3,
+      "Espirito Santo": 3,
+      "Rio Grande do Sul": 2,
+      "Distrito Federal": 2,
+      "Amapá": 1,
+      "Alagoas": 1,
+      "Tocantins": 1,
+      "Santa Catarina": 1
+    },
+    "estado_graduacao": {
+      "Minas Gerais": 47,
+      "Piauí": 33,
+      "Paraíba": 26,
+      "Ceará": 23,
+      "Rio Grande do Norte": 19,
+      "Rio de Janeiro": 19,
+      "Pará": 12,
+      "Maranhão": 10,
+      "Pernambuco": 9,
+      "Bahia": 9,
+      "Amazonas": 7,
+      "Espírito Santo": 6,
+      "Goiás": 5,
+      "São Paulo": 5,
+      "Santa Catarina": 3,
+      "Acre": 3,
+      "Rondônia": 3,
+      "Roraima": 3,
+      "Amapá": 2,
+      "Rio Grande do Sul": 2,
+      "Tocantins": 2,
+      "Sergipe": 2,
+      "Mato Grosso do Sul": 2,
+      "Mato Grosso": 1,
+      "Alagoas": 1,
+      "Distrito Federal": 1,
+      "Paraná": 1
+    },
+    "uf_crm_ds": {
+      "Minas Gerais": 45,
+      "Ceará": 31,
+      "Piauí": 28,
+      "Rio Grande do Norte": 22,
+      "Bahia": 22,
+      "Maranhão": 17,
+      "Paraíba": 15,
+      "São Paulo": 12,
+      "Pernambuco": 12,
+      "Pará": 10,
+      "Goiás": 8,
+      "Rio de Janeiro": 6,
+      "Amazonas": 5,
+      "Santa Catarina": 4,
+      "Roraima": 4,
+      "Mato Grosso": 3,
+      "Distrito Federal": 3,
+      "Sergipe": 3,
+      "Amapá": 2,
+      "Rondônia": 2,
+      "Rio Grande do Sul": 2,
+      "Espirito Santo": 2,
+      "Alagoas": 2,
+      "Acre": 1,
+      "Mato Grosso do Sul": 1
+    },
+    "vaga_uf": {
+      "Minas Gerais": 46,
+      "Ceará": 36,
+      "Maranhão": 26,
+      "Bahia": 24,
+      "Piauí": 22,
+      "Rio Grande do Norte": 22,
+      "Pará": 13,
+      "Paraíba": 10,
+      "São Paulo": 9,
+      "Goiás": 9,
+      "Pernambuco": 8,
+      "Rio de Janeiro": 6,
+      "Rondônia": 5,
+      "Alagoas": 5,
+      "Roraima": 5,
+      "Amazonas": 4,
+      "Santa Catarina": 3,
+      "Sergipe": 2,
+      "Amapá": 2,
+      "Mato Grosso": 2,
+      "Acre": 1,
+      "Rio Grande do Sul": 1,
+      "Distrito Federal": 1
+    },
+    "vagas_por_municipio": [
+      {
+        "vaga_uf": "Acre",
+        "vaga_municipio": "Rio Branco",
+        "curso_nome_limpo": [
+          "Cirurgia Oncológica Avançada"
+        ]
+      },
+      {
+        "vaga_uf": "Alagoas",
+        "vaga_municipio": "Arapiraca",
+        "curso_nome_limpo": [
+          "Oncologia Clínica: Cânceres Prevalentes no SUS",
+          "Oncologia Clínica: Cânceres Prevalentes no SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Alagoas",
+        "vaga_municipio": "Delmiro Gouveia",
+        "curso_nome_limpo": [
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Alagoas",
+        "vaga_municipio": "Maceió",
+        "curso_nome_limpo": [
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica",
+          "Anatomia Patológica com Ênfase em Oncologia e Diagnóstico Integrado"
+        ]
+      },
+      {
+        "vaga_uf": "Amapá",
+        "vaga_municipio": "Macapá",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Amazonas",
+        "vaga_municipio": "Manacapuru",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Amazonas",
+        "vaga_municipio": "Manaus",
+        "curso_nome_limpo": [
+          "Anatomia Patológica com Ênfase em Oncologia e Diagnóstico Integrado"
+        ]
+      },
+      {
+        "vaga_uf": "Amazonas",
+        "vaga_municipio": "São Sebastião do Uatumã",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Amazonas",
+        "vaga_municipio": "Tabatinga",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Brumado ",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Eunápolis ",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Feira De Santana ",
+        "curso_nome_limpo": [
+          "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Guanambi",
+        "curso_nome_limpo": [
+          "Colonoscopia Diagnóstica e Terapêutica no SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Itaberaba ",
+        "curso_nome_limpo": [
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Juazeiro",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Cirurgia Oncológica Avançada",
+          "Cirurgia Oncológica Avançada",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Santo Antônio De Jesus ",
+        "curso_nome_limpo": [
+          "Cirurgia Oncológica Avançada",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Senhor Do Bonfim ",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Serrinha",
+        "curso_nome_limpo": [
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Endoscopia Digestiva Avançada e Procedimentos Terapêuticos"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Teixeira De Freitas ",
+        "curso_nome_limpo": [
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Valença",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Bahia",
+        "vaga_municipio": "Vitória Da Conquista",
+        "curso_nome_limpo": [
+          "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos",
+          "Cirurgia Coloproctológica com Foco em Tumores Colorretais",
+          "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos",
+          "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos",
+          "Cirurgia Coloproctológica com Foco em Tumores Colorretais"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Acaraú",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Barbalha",
+        "curso_nome_limpo": [
+          "Radioterapia: Planejamento e Execução no SUS",
+          "Anatomia Patológica com Ênfase em Oncologia e Diagnóstico Integrado"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Brejo Santo",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Camocim",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Canindé",
+        "curso_nome_limpo": [
+          "Videolaringoscopia e Endoscopia Nasofaríngea",
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Caucaia",
+        "curso_nome_limpo": [
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica",
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica",
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Crateús",
+        "curso_nome_limpo": [
+          "Cirurgia Oncológica Avançada",
+          "Cirurgia Coloproctológica com Foco em Tumores Colorretais"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Crato",
+        "curso_nome_limpo": [
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Ecocardiografia Transtorácica Aplicada ao SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Icó",
+        "curso_nome_limpo": [
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Iguatu",
+        "curso_nome_limpo": [
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Jaguaribe",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Maracanaú",
+        "curso_nome_limpo": [
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Mauriti",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Cirurgia Geral Minimamente Invasiva",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Ecocardiografia Transtorácica Aplicada ao SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Quixadá",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Russas",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Sobral",
+        "curso_nome_limpo": [
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Tauá",
+        "curso_nome_limpo": [
+          "Ecocardiografia Transtorácica Aplicada ao SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Ceará",
+        "vaga_municipio": "Tianguá",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Distrito Federal",
+        "vaga_municipio": "Brasília",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Goiás",
+        "vaga_municipio": "Aparecida de Goiânia",
+        "curso_nome_limpo": [
+          "Endoscopia Digestiva Avançada e Procedimentos Terapêuticos",
+          "Colonoscopia Diagnóstica e Terapêutica no SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Goiás",
+        "vaga_municipio": "Hidrolândia",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura"
+        ]
+      },
+      {
+        "vaga_uf": "Goiás",
+        "vaga_municipio": "Iporá",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura"
+        ]
+      },
+      {
+        "vaga_uf": "Goiás",
+        "vaga_municipio": "Luziânia",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Goiás",
+        "vaga_municipio": "Senador Canedo",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Goiás",
+        "vaga_municipio": "Silvânia",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "Araioses",
+        "curso_nome_limpo": [
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "Açailândia",
+        "curso_nome_limpo": [
+          "Endoscopia Digestiva Avançada e Procedimentos Terapêuticos"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "Bacabal",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "Buriti Bavo",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "Caxias",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Videolaringoscopia e Endoscopia Nasofaríngea",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "Coroatá",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "Imperatriz",
+        "curso_nome_limpo": [
+          "Cirurgia Coloproctológica com Foco em Tumores Colorretais",
+          "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos",
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "Pinheiro",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "Santa Inês",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "São Bento",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "São Luís",
+        "curso_nome_limpo": [
+          "Anatomia Patológica com Ênfase em Oncologia e Diagnóstico Integrado"
+        ]
+      },
+      {
+        "vaga_uf": "Maranhão",
+        "vaga_municipio": "Timon",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Ecocardiografia Transtorácica Aplicada ao SUS",
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica",
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Ecocardiografia Transtorácica Aplicada ao SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Mato Grosso",
+        "vaga_municipio": "Cáceres",
+        "curso_nome_limpo": [
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Bocaiúva",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Videolaringoscopia e Endoscopia Nasofaríngea",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Capelinha",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Caratinga",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Carmo do Paranaíba",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Coronel Fabriciano",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Diamantina",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Espinosa",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Francisco Sá",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Videolaringoscopia e Endoscopia Nasofaríngea",
+          "Videolaringoscopia e Endoscopia Nasofaríngea",
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Ipanema",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Itambacuri",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Januária",
+        "curso_nome_limpo": [
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Luislândia",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Patos de Minas",
+        "curso_nome_limpo": [
+          "Colonoscopia Diagnóstica e Terapêutica no SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Porteirinha",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "São Francisco",
+        "curso_nome_limpo": [
+          "Videolaringoscopia e Endoscopia Nasofaríngea",
+          "Videolaringoscopia e Endoscopia Nasofaríngea",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Teófilo Otoni",
+        "curso_nome_limpo": [
+          "Cirurgia Oncológica Avançada",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Oncologia Clínica: Cânceres Prevalentes no SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Uberaba",
+        "curso_nome_limpo": [
+          "Anatomia Patológica com Ênfase em Oncologia e Diagnóstico Integrado"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Várzea da Palma",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura"
+        ]
+      },
+      {
+        "vaga_uf": "Minas Gerais",
+        "vaga_municipio": "Águas Formosas",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Paraíba",
+        "vaga_municipio": "Cajazeiras ",
+        "curso_nome_limpo": [
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica"
+        ]
+      },
+      {
+        "vaga_uf": "Paraíba",
+        "vaga_municipio": "Patos ",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Cirurgia Geral Minimamente Invasiva",
+          "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Oncologia Clínica: Cânceres Prevalentes no SUS",
+          "Anestesiologia Perioperatória e Sedação Segura"
+        ]
+      },
+      {
+        "vaga_uf": "Paraíba",
+        "vaga_municipio": "Sousa ",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva",
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Endoscopia Digestiva Avançada e Procedimentos Terapêuticos"
+        ]
+      },
+      {
+        "vaga_uf": "Pará",
+        "vaga_municipio": "Belém",
+        "curso_nome_limpo": [
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Endoscopia Digestiva Avançada e Procedimentos Terapêuticos"
+        ]
+      },
+      {
+        "vaga_uf": "Pará",
+        "vaga_municipio": "Bragança",
+        "curso_nome_limpo": [
+          "Oncologia Clínica: Cânceres Prevalentes no SUS",
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Pará",
+        "vaga_municipio": "Capanema",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Pará",
+        "vaga_municipio": "Jacundá",
+        "curso_nome_limpo": [
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Pará",
+        "vaga_municipio": "Marabá",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Pará",
+        "vaga_municipio": "Santarém ",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Pará",
+        "vaga_municipio": "São João de Pirabas",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Pará",
+        "vaga_municipio": "Tracuateua",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Pará",
+        "vaga_municipio": "Tucuruí",
+        "curso_nome_limpo": [
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Radioterapia: Planejamento e Execução no SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Pernambuco",
+        "vaga_municipio": "Afogados da Ingazeira ",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Pernambuco",
+        "vaga_municipio": "Palmares ",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Cirurgia Geral Minimamente Invasiva",
+          "Cirurgia Geral Minimamente Invasiva",
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Piauí",
+        "vaga_municipio": "Campo maior",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos"
+        ]
+      },
+      {
+        "vaga_uf": "Piauí",
+        "vaga_municipio": "Floriano",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva",
+          "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos"
+        ]
+      },
+      {
+        "vaga_uf": "Piauí",
+        "vaga_municipio": "Oeiras",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Piauí",
+        "vaga_municipio": "Parnaíba",
+        "curso_nome_limpo": [
+          "Cirurgia Oncológica Avançada",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Ecocardiografia Transtorácica Aplicada ao SUS",
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Piauí",
+        "vaga_municipio": "Picos",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Videolaringoscopia e Endoscopia Nasofaríngea",
+          "Videolaringoscopia e Endoscopia Nasofaríngea",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Piauí",
+        "vaga_municipio": "Piripiri",
+        "curso_nome_limpo": [
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Ecocardiografia Transtorácica Aplicada ao SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Piauí",
+        "vaga_municipio": "São Raimundo Nonato",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Cirurgia Geral Minimamente Invasiva",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos"
+        ]
+      },
+      {
+        "vaga_uf": "Piauí",
+        "vaga_municipio": "Teresina",
+        "curso_nome_limpo": [
+          "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos"
+        ]
+      },
+      {
+        "vaga_uf": "Piauí",
+        "vaga_municipio": "Valença do Piauí",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Rio Grande do Norte",
+        "vaga_municipio": "Alexandria",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Rio Grande do Norte",
+        "vaga_municipio": "Açu",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Rio Grande do Norte",
+        "vaga_municipio": "Caicó",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Rio Grande do Norte",
+        "vaga_municipio": "Ceará-Mirim",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Cirurgia Geral Minimamente Invasiva",
+          "Colonoscopia Diagnóstica e Terapêutica no SUS",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Rio Grande do Norte",
+        "vaga_municipio": "João Câmara",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Rio Grande do Norte",
+        "vaga_municipio": "Mossoró",
+        "curso_nome_limpo": [
+          "Cirurgia Oncológica Avançada",
+          "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Anatomia Patológica com Ênfase em Oncologia e Diagnóstico Integrado"
+        ]
+      },
+      {
+        "vaga_uf": "Rio Grande do Norte",
+        "vaga_municipio": "Santa Cruz",
+        "curso_nome_limpo": [
+          "Ecocardiografia Transtorácica Aplicada ao SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Rio Grande do Norte",
+        "vaga_municipio": "São José de Mipibu",
+        "curso_nome_limpo": [
+          "Endoscopia Digestiva Avançada e Procedimentos Terapêuticos",
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica",
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista",
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Rio Grande do Norte",
+        "vaga_municipio": "São Miguel ",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Anestesiologia Perioperatória e Sedação Segura"
+        ]
+      },
+      {
+        "vaga_uf": "Rio Grande do Sul",
+        "vaga_municipio": "Rio Grande",
+        "curso_nome_limpo": [
+          "Cirurgia do Aparelho Digestivo com Foco em Tumores Digestivos"
+        ]
+      },
+      {
+        "vaga_uf": "Rio de Janeiro",
+        "vaga_municipio": "Cabo Frio ",
+        "curso_nome_limpo": [
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos",
+          "Radioterapia: Planejamento e Execução no SUS",
+          "Videolaringoscopia e Endoscopia Nasofaríngea"
+        ]
+      },
+      {
+        "vaga_uf": "Rio de Janeiro",
+        "vaga_municipio": "São João de Meriti",
+        "curso_nome_limpo": [
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica"
+        ]
+      },
+      {
+        "vaga_uf": "Rio de Janeiro",
+        "vaga_municipio": "Volta Redonda",
+        "curso_nome_limpo": [
+          "Endoscopia Digestiva Alta Diagnóstica e Terapêutica"
+        ]
+      },
+      {
+        "vaga_uf": "Rondônia",
+        "vaga_municipio": "Ariquemes",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Rondônia",
+        "vaga_municipio": "Jaru",
+        "curso_nome_limpo": [
+          "Cirurgia Geral Minimamente Invasiva",
+          "Cirurgia Geral Minimamente Invasiva"
+        ]
+      },
+      {
+        "vaga_uf": "Rondônia",
+        "vaga_municipio": "Porto Velho",
+        "curso_nome_limpo": [
+          "Ecocardiografia Transtorácica Aplicada ao SUS"
+        ]
+      },
+      {
+        "vaga_uf": "Rondônia",
+        "vaga_municipio": "Rolim de Moura",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Roraima",
+        "vaga_municipio": "Boa Vista",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Anestesiologia Perioperatória e Sedação Segura",
+          "Colposcopia e Doenças do Trato Genital Inferior",
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Roraima",
+        "vaga_municipio": "Rorainópolis",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "Santa Catarina",
+        "vaga_municipio": "Chapecó",
+        "curso_nome_limpo": [
+          "Cirurgia Coloproctológica com Foco em Tumores Colorretais",
+          "Anatomia Patológica com Ênfase em Oncologia e Diagnóstico Integrado"
+        ]
+      },
+      {
+        "vaga_uf": "Santa Catarina",
+        "vaga_municipio": "Jaraguá do Sul",
+        "curso_nome_limpo": [
+          "Cirurgia Oncológica Avançada"
+        ]
+      },
+      {
+        "vaga_uf": "Sergipe",
+        "vaga_municipio": "Aracaju ",
+        "curso_nome_limpo": [
+          "Colposcopia e Doenças do Trato Genital Inferior"
+        ]
+      },
+      {
+        "vaga_uf": "Sergipe",
+        "vaga_municipio": "Lagarto ",
+        "curso_nome_limpo": [
+          "Ecocardiografia Transtorácica Aplicada ao SUS"
+        ]
+      },
+      {
+        "vaga_uf": "São Paulo",
+        "vaga_municipio": "Andradina",
+        "curso_nome_limpo": [
+          "Ultrassonografia Mamária Diagnóstica e Intervencionista"
+        ]
+      },
+      {
+        "vaga_uf": "São Paulo",
+        "vaga_municipio": "Bauru",
+        "curso_nome_limpo": [
+          "Cirurgia Ginecológica com Foco em Tumores Ginecológicos"
+        ]
+      },
+      {
+        "vaga_uf": "São Paulo",
+        "vaga_municipio": "Botucatu",
+        "curso_nome_limpo": [
+          "Endoscopia Digestiva Avançada e Procedimentos Terapêuticos"
+        ]
+      },
+      {
+        "vaga_uf": "São Paulo",
+        "vaga_municipio": "Campinas",
+        "curso_nome_limpo": [
+          "Anatomia Patológica com Ênfase em Oncologia e Diagnóstico Integrado"
+        ]
+      },
+      {
+        "vaga_uf": "São Paulo",
+        "vaga_municipio": "Caraguatatuba",
+        "curso_nome_limpo": [
+          "Radioterapia: Planejamento e Execução no SUS"
+        ]
+      },
+      {
+        "vaga_uf": "São Paulo",
+        "vaga_municipio": "Cotia",
+        "curso_nome_limpo": [
+          "Anestesiologia Perioperatória e Sedação Segura"
+        ]
+      },
+      {
+        "vaga_uf": "São Paulo",
+        "vaga_municipio": "Guarulhos",
+        "curso_nome_limpo": [
+          "Cirurgia Coloproctológica com Foco em Tumores Colorretais",
+          "Cirurgia Coloproctológica com Foco em Tumores Colorretais",
+          "Oncologia Clínica: Cânceres Prevalentes no SUS"
+        ]
+      }
+    ]
+  }
+}

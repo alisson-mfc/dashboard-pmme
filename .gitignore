@@ -1,0 +1,11 @@
+# Dados sensíveis
+dados_anonimizados.json
+
+# Arquivos de Cache do Python
+__pycache__/
+*.pyc
+
+# Ambientes virtuais
+.env
+.venv
+venv/

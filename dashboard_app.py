@@ -34,7 +34,9 @@ def criar_grafico_barras(dados_dict, titulo, height=450):
     if len(df_contagem) > 25:
         df_contagem = df_contagem.head(25)
     
-    percentual = (df_contagem['Quantidade'] / TOTAL_REGISTROS * 100).round(1)
+    # Recalcula o total apenas para as categorias mostradas para a porcentagem fazer sentido no gráfico
+    total_parcial = df_contagem['Quantidade'].sum()
+    percentual = (df_contagem['Quantidade'] / total_parcial * 100).round(1)
 
     fig = go.Figure(data=[go.Bar(
         x=df_contagem['Categoria'], y=df_contagem['Quantidade'],
@@ -67,6 +69,15 @@ def criar_grafico_regioes(dados_list):
 # ============================================================================
 # LAYOUT E CALLBACKS
 # ============================================================================
+
+# Opções do Dropdown para reutilização no layout e no callback
+dropdown_apropriacao_options = [
+    {'label': 'Organização de Redes de Atenção à Saúde', 'value': 'apropriacao_redes'},
+    {'label': 'Coordenação do Cuidado', 'value': 'apropriacao_coordenacao'},
+    {'label': 'Gestão da Clínica e do Cuidado', 'value': 'apropriacao_gestao'},
+    {'label': 'Saúde Baseada em Evidências', 'value': 'apropriacao_evidencias'},
+    {'label': 'Plataformas Digitais', 'value': 'experiencia_digital'},
+]
 
 def create_layout():
     """Cria e retorna o layout do dashboard."""
@@ -121,6 +132,21 @@ def create_layout():
             html.Div(dcc.Graph(figure=criar_grafico_barras(dados_publicos['regiao_vaga'], 'Região da Vaga Principal')), className="col-md-6"),
         ], className="row mt-4"),
         
+        # ===== SEÇÃO ADICIONADA AQUI =====
+        html.Div([
+            html.H2('Apropriação sobre Temas', className="mt-5"),
+            html.Label('Selecione o tema:', style={'fontWeight': 'bold'}),
+            dcc.Dropdown(
+                id='dropdown-apropriacao',
+                options=dropdown_apropriacao_options,
+                value='apropriacao_redes',
+                clearable=False,
+                style={'marginBottom': 20}
+            ),
+            dcc.Graph(id='grafico-apropriacao'),
+        ], style={'marginBottom': 50}),
+        # ==================================
+        
         html.H2('Análise Qualitativa', className="mt-5"),
         dcc.Dropdown(
             id='dropdown-qualitativo',
@@ -147,6 +173,26 @@ def create_layout():
 
 def register_callbacks(app):
     """Registra todos os callbacks do dashboard."""
+
+    # ===== CALLBACK ADICIONADO AQUI =====
+    @app.callback(
+        Output('grafico-apropriacao', 'figure'),
+        Input('dropdown-apropriacao', 'value')
+    )
+    def atualizar_apropriacao(tema_selecionado):
+        dados_tema = dados_publicos[tema_selecionado]
+        
+        # Mapeia as chaves (ex: 'A') para rótulos mais descritivos (ex: 'Maior (A)')
+        mapeamento = {'A': 'Maior (A)', 'E': 'Menor (E)'}
+        dados_mapeados = {mapeamento.get(k, 'Não Avaliado'): v for k, v in dados_tema.items()}
+
+        # Cria um mapa de valor para rótulo para obter o título completo
+        options_map = {opt['value']: opt['label'] for opt in dropdown_apropriacao_options}
+        titulo_grafico = options_map[tema_selecionado]
+
+        return criar_grafico_barras(dados_mapeados, titulo_grafico)
+    # ====================================
+
     @app.callback(
         [Output('nuvem-palavras', 'src'),
          Output('grafico-sentimentos', 'figure'),
@@ -166,24 +212,22 @@ def register_callbacks(app):
             with open(arquivo_nuvem, 'rb') as img_file:
                 img_src = f'data:image/png;base64,{base64.b64encode(img_file.read()).decode()}'
         
-        # ===== CORREÇÃO APLICADA AQUI: Cores personalizadas para o gráfico de sentimentos =====
+        # Gráfico de Sentimentos
         dist = dados_campo['sentimentos']['distribuicao']
         
-        # Mapeamento de sentimentos para cores
         color_map = {
-            'Positivo': '#28a745',  # Verde
-            'Neutro': '#ffc107',    # Amarelo
-            'Negativo': '#dc3545'   # Vermelho
+            'Positivo': '#28a745',
+            'Neutro': '#ffc107',
+            'Negativo': '#dc3545'
         }
 
-        # Cria um DataFrame para facilitar a ordenação e o plot
         df_sent = pd.DataFrame(list(dist.items()), columns=['Sentimento', 'Quantidade'])
         
         fig_sent = px.bar(
             df_sent,
             x='Sentimento', 
             y='Quantidade', 
-            color='Sentimento', # Usa a coluna Sentimento para aplicar o mapa de cores
+            color='Sentimento',
             color_discrete_map=color_map,
             title='Análise de Sentimentos', 
             labels={'Sentimento': 'Sentimento', 'Quantidade': 'Quantidade'}

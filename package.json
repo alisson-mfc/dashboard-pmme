@@ -1,0 +1,17 @@
+{
+  "name": "pmme-dashboard",
+  "version": "1.0.0",
+  "description": "Dashboard interativo do PMM-e com análises por rede formadora",
+  "main": "api/dados.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "dashboard",
+    "pmme",
+    "analytics"
+  ],
+  "author": "",
+  "license": "MIT"
+}

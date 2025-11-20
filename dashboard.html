@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard PMM-e - Visão Geral</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container-fluid {
+            max-width: 1400px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            font-weight: 500;
+        }
+
+        h3 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .graph-container {
+            margin-bottom: 20px;
+        }
+
+        .dropdown-section {
+            margin-bottom: 50px;
+        }
+
+        .dropdown-label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        select {
+            margin-bottom: 20px;
+        }
+
+        .resumo-container {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .resumo-container h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .resumo-container h4 {
+            color: #34495e;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 1.15em;
+        }
+
+        .resumo-container h5 {
+            color: #34495e;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            font-size: 1.05em;
+        }
+
+        .resumo-container p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .resumo-container strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .resumo-container ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .resumo-container li {
+            margin-bottom: 6px;
+        }
+
+        .nuvem-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .nuvem-container img {
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+
+        .error {
+            background-color: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .filter-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .matriculados-counter {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .matriculados-counter svg {
+            width: 40px;
+            height: 40px;
+            color: #667eea;
+        }
+
+        .matriculados-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .matriculados-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .matriculados-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            line-height: 1;
+        }
+
+        .filter-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-control label {
+            color: white;
+            font-weight: 600;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .filter-control select {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            background: white;
+            color: #2c3e50;
+            font-weight: 500;
+            cursor: pointer;
+            min-width: 180px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .filter-control select:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Dashboard PMM-e - Visão Geral</h1>
+
+        <div id="loading" class="loading">Carregando dados...</div>
+        <div id="error-message" class="error" style="display: none;"></div>
+        <div id="dashboard-content" style="display: none;">
+
+            <!-- Barra de Filtros e Contador -->
+            <div class="filter-bar">
+                <div class="matriculados-counter">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <div class="matriculados-info">
+                        <span class="matriculados-label">Matriculados</span>
+                        <span class="matriculados-number" id="total-matriculados">0</span>
+                    </div>
+                </div>
+                <div class="filter-control">
+                    <label for="filtro-rede">Rede Formadora:</label>
+                    <select id="filtro-rede" class="form-select">
+                        <option value="Todas">Todas</option>
+                        <option value="EBSERH">EBSERH</option>
+                        <option value="PROADI-SUS">PROADI-SUS</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Dados Pessoais -->
+            <h2>Dados Pessoais</h2>
+            <div class="row">
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-raca"></div>
+                </div>
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-sexo"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-idade"></div>
+                </div>
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-estado-civil"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-genero"></div>
+                </div>
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-orientacao"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-nome-social"></div>
+                </div>
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-acoes-afirmativas"></div>
+                </div>
+            </div>
+
+            <!-- Formação Acadêmica -->
+            <h2>Formação Acadêmica</h2>
+            <div class="row">
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-tempo-graduado"></div>
+                </div>
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-pais-formacao"></div>
+                </div>
+            </div>
+
+            <!-- Especialidades e Títulos -->
+            <h2>Especialidades e Títulos</h2>
+            <div class="row">
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-residencias"></div>
+                </div>
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-titulo-especialista"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-rm-primaria"></div>
+                </div>
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-rm-secundaria"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-titulo-primario"></div>
+                </div>
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-titulo-secundario"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 graph-container">
+                    <div id="grafico-cursos"></div>
+                </div>
+            </div>
+
+            <!-- Distribuição Geográfica -->
+            <h2>Distribuição Geográfica</h2>
+            <div class="graph-container">
+                <div id="grafico-regioes"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-regiao-nascimento"></div>
+                </div>
+                <div class="col-md-6 graph-container">
+                    <div id="grafico-regiao-vaga"></div>
+                </div>
+            </div>
+
+            <!-- Apropriação sobre Temas -->
+            <div class="dropdown-section">
+                <h2>Apropriação sobre Temas</h2>
+                <label class="dropdown-label">Selecione o tema:</label>
+                <select id="dropdown-apropriacao" class="form-select">
+                    <option value="apropriacao_redes">Organização de Redes de Atenção à Saúde</option>
+                    <option value="apropriacao_coordenacao">Coordenação do Cuidado</option>
+                    <option value="apropriacao_gestao">Gestão da Clínica e do Cuidado</option>
+                    <option value="apropriacao_evidencias">Saúde Baseada em Evidências</option>
+                    <option value="experiencia_digital">Plataformas Digitais</option>
+                </select>
+                <div id="grafico-apropriacao"></div>
+            </div>
+
+            <!-- Análise Qualitativa -->
+            <h2>Análise Qualitativa</h2>
+            <select id="dropdown-qualitativo" class="form-select">
+                <option value="aptidoes_rotina">Expectativas em relação ao PMM-e</option>
+                <option value="competencias_fortalecer">Considera apto para atuação</option>
+                <option value="impressao_servico">Impressão sobre o serviço</option>
+                <option value="momento_imersao">Expectativas para imersão</option>
+            </select>
+
+            <div class="nuvem-container">
+                <h3>Nuvem de Palavras</h3>
+                <img id="nuvem-palavras" src="" alt="Nuvem de palavras" style="display: none;">
+                <div id="nuvem-placeholder" class="loading">Selecione uma opção para visualizar a nuvem de palavras</div>
+            </div>
+
+            <div class="graph-container">
+                <h3>Análise de Sentimentos</h3>
+                <div id="grafico-sentimentos"></div>
+            </div>
+
+            <h3>Resumo dos Textos</h3>
+            <div id="resumo-textos" class="resumo-container">
+                Selecione uma opção para visualizar o resumo
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variáveis globais para armazenar os dados
+        let dadosPublicos = null;
+        let resultadosAnalises = null;
+
+        // Mapeamento de temas para títulos
+        const temasTitulos = {
+            'apropriacao_redes': 'Organização de Redes de Atenção à Saúde',
+            'apropriacao_coordenacao': 'Coordenação do Cuidado',
+            'apropriacao_gestao': 'Gestão da Clínica e do Cuidado',
+            'apropriacao_evidencias': 'Saúde Baseada em Evidências',
+            'experiencia_digital': 'Plataformas Digitais'
+        };
+
+        // Função para formatar Markdown simples em HTML
+        function formatarMarkdown(texto) {
+            if (!texto) return 'Resumo não disponível.';
+
+            let html = texto;
+
+            // Converter títulos (# texto)
+            html = html.replace(/^### (.+)$/gm, '<h5>$1</h5>');
+            html = html.replace(/^## (.+)$/gm, '<h4>$1</h4>');
+            html = html.replace(/^# (.+)$/gm, '<h3>$1</h3>');
+
+            // Converter negrito (**texto**)
+            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+            // Converter itálico (*texto*)
+            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+            // Converter listas não ordenadas (- item)
+            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+
+            // Converter quebras de linha em parágrafos
+            html = html.split('\n\n').map(paragrafo => {
+                if (paragrafo.trim() && !paragrafo.startsWith('<')) {
+                    return `<p>${paragrafo.trim()}</p>`;
+                }
+                return paragrafo;
+            }).join('\n');
+
+            // Converter quebras de linha simples em <br>
+            html = html.replace(/\n/g, '<br>');
+
+            return html;
+        }
+
+        // Função para criar gráfico de barras
+        function criarGraficoBarras(dadosDict, titulo, elementId, height = 450) {
+            if (!dadosDict || Object.keys(dadosDict).length === 0) {
+                Plotly.newPlot(elementId, [], {
+                    title: `${titulo} (Sem dados)`,
+                    template: 'plotly_white'
+                });
+                return;
+            }
+
+            // Converter objeto em array e ordenar
+            let dados = Object.entries(dadosDict)
+                .map(([categoria, quantidade]) => ({ categoria, quantidade }))
+                .sort((a, b) => b.quantidade - a.quantidade);
+
+            // Limitar a 25 categorias
+            if (dados.length > 25) {
+                dados = dados.slice(0, 25);
+            }
+
+            // Calcular percentuais
+            const totalParcial = dados.reduce((sum, item) => sum + item.quantidade, 0);
+            const categorias = dados.map(d => d.categoria);
+            const quantidades = dados.map(d => d.quantidade);
+            const percentuais = dados.map(d => ((d.quantidade / totalParcial) * 100).toFixed(1) + '%');
+
+            // Detectar se as legendas são longas
+            const maxComprimento = Math.max(...categorias.map(c => c.length));
+            const mediaComprimento = categorias.reduce((acc, cat) => acc + cat.length, 0) / categorias.length;
+
+            // Usar gráfico horizontal para legendas longas (melhor prática em data storytelling)
+            const usarHorizontal = mediaComprimento > 12 || maxComprimento > 20;
+
+            let trace, layout;
+
+            if (usarHorizontal) {
+                // Gráfico horizontal (barras horizontais)
+                // Inverter ordem para maior aparecer no topo
+                const categoriasInvertidas = [...categorias].reverse();
+                const quantidadesInvertidas = [...quantidades].reverse();
+                const percentuaisInvertidos = [...percentuais].reverse();
+
+                trace = {
+                    x: quantidadesInvertidas,
+                    y: categoriasInvertidas,
+                    type: 'bar',
+                    orientation: 'h',
+                    text: percentuaisInvertidos,
+                    textposition: 'outside',
+                    marker: { color: '#1f77b4' },
+                    hovertemplate: '<b>%{y}</b><br>Quantidade: %{x}<br>%{text}<extra></extra>'
+                };
+
+                // Ajustar altura baseado no número de categorias (30px por categoria, mínimo 400px)
+                const alturaCalculada = Math.max(400, categorias.length * 30 + 100);
+                const alturaFinal = height > 450 ? Math.max(height, alturaCalculada) : alturaCalculada;
+
+                // Margem esquerda maior para acomodar as legendas
+                const margemEsquerda = Math.min(300, maxComprimento * 8);
+
+                // Ajustar margem direita baseado no comprimento das legendas e valor máximo
+                // Legendas muito longas precisam de mais espaço à direita para compensar
+                const valorMaximo = Math.max(...quantidades);
+                let margemDireita = 120;
+
+                if (maxComprimento > 60) {
+                    // Legendas muito longas (ex: Ações Afirmativas)
+                    margemDireita = 160;
+                } else if (valorMaximo > 500) {
+                    margemDireita = 140;
+                }
+
+                // Calcular range do eixo x de forma dinâmica
+                // Para valores pequenos, precisa de mais espaço proporcional para os labels
+                let multiplicador = 1.25; // Padrão
+
+                if (valorMaximo <= 10) {
+                    multiplicador = 2.0; // Valores muito pequenos precisam de mais espaço
+                } else if (valorMaximo <= 30) {
+                    multiplicador = 1.5;
+                } else if (valorMaximo <= 100) {
+                    multiplicador = 1.35;
+                }
+
+                layout = {
+                    title: titulo,
+                    template: 'plotly_white',
+                    height: alturaFinal,
+                    margin: { t: 80, b: 60, l: margemEsquerda, r: margemDireita },
+                    xaxis: {
+                        title: 'Quantidade',
+                        range: [0, valorMaximo * multiplicador],
+                        automargin: true
+                    },
+                    yaxis: {
+                        automargin: true,
+                        tickfont: { size: 11 },
+                        ticksuffix: '  '
+                    },
+                    bargap: 0.3
+                };
+            } else {
+                // Gráfico vertical tradicional para legendas curtas
+                trace = {
+                    x: categorias,
+                    y: quantidades,
+                    type: 'bar',
+                    text: percentuais,
+                    textposition: 'outside',
+                    marker: { color: '#1f77b4' },
+                    hovertemplate: '<b>%{x}</b><br>Quantidade: %{y}<br>%{text}<extra></extra>'
+                };
+
+                layout = {
+                    title: titulo,
+                    template: 'plotly_white',
+                    height: height,
+                    margin: { t: 80, b: 80, l: 60, r: 40 },
+                    yaxis: {
+                        title: 'Quantidade',
+                        range: [0, Math.max(...quantidades) * 1.25]
+                    },
+                    xaxis: {
+                        automargin: true,
+                        tickangle: -20,
+                        tickfont: { size: 11 }
+                    }
+                };
+            }
+
+            Plotly.newPlot(elementId, [trace], layout, { responsive: true });
+        }
+
+        // Função para criar histograma
+        function criarHistograma(dadosList, titulo, elementId) {
+            if (!dadosList || dadosList.length === 0) {
+                Plotly.newPlot(elementId, [], {
+                    title: `${titulo} (Sem dados)`,
+                    template: 'plotly_white'
+                });
+                return;
+            }
+
+            const media = dadosList.reduce((a, b) => a + b, 0) / dadosList.length;
+            const sorted = [...dadosList].sort((a, b) => a - b);
+            const mediana = sorted.length % 2 === 0
+                ? (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2
+                : sorted[Math.floor(sorted.length / 2)];
+
+            const trace = {
+                x: dadosList,
+                type: 'histogram',
+                marker: { color: '#2ca02c' },
+                nbinsx: 20
+            };
+
+            const layout = {
+                title: titulo,
+                template: 'plotly_white',
+                height: 450,
+                margin: { t: 80, b: 60, l: 60, r: 40 },
+                shapes: [
+                    {
+                        type: 'line',
+                        x0: media,
+                        x1: media,
+                        y0: 0,
+                        y1: 1,
+                        yref: 'paper',
+                        line: { color: 'red', width: 2, dash: 'dash' }
+                    },
+                    {
+                        type: 'line',
+                        x0: mediana,
+                        x1: mediana,
+                        y0: 0,
+                        y1: 1,
+                        yref: 'paper',
+                        line: { color: 'blue', width: 2, dash: 'dash' }
+                    }
+                ],
+                annotations: [
+                    {
+                        x: media,
+                        y: 1,
+                        yref: 'paper',
+                        text: `Média: ${media.toFixed(1)}`,
+                        showarrow: false,
+                        xanchor: 'right',
+                        yanchor: 'top'
+                    },
+                    {
+                        x: mediana,
+                        y: 1,
+                        yref: 'paper',
+                        text: `Mediana: ${mediana.toFixed(1)}`,
+                        showarrow: false,
+                        xanchor: 'left',
+                        yanchor: 'top'
+                    }
+                ]
+            };
+
+            Plotly.newPlot(elementId, [trace], layout, { responsive: true });
+        }
+
+        // Função para criar gráfico de regiões (linha)
+        function criarGraficoRegioes(dadosList) {
+            if (!dadosList || dadosList.length === 0) {
+                Plotly.newPlot('grafico-regioes', [], {
+                    title: 'Distribuição Regional (Sem dados)',
+                    template: 'plotly_white'
+                });
+                return;
+            }
+
+            // Agrupar dados por região
+            const regioes = {};
+            dadosList.forEach(item => {
+                if (!regioes[item.Região]) {
+                    regioes[item.Região] = { momentos: [], quantidades: [] };
+                }
+                regioes[item.Região].momentos.push(item.Momento);
+                regioes[item.Região].quantidades.push(item.Quantidade);
+            });
+
+            // Criar traces para cada região
+            const traces = Object.entries(regioes).map(([regiao, dados]) => ({
+                x: dados.momentos,
+                y: dados.quantidades,
+                type: 'scatter',
+                mode: 'lines+markers',
+                name: regiao
+            }));
+
+            const layout = {
+                title: 'Distribuição Regional por Momento',
+                template: 'plotly_white',
+                height: 550,
+                margin: { t: 80, b: 60, l: 60, r: 40 },
+                xaxis: { title: 'Momento' },
+                yaxis: { title: 'Quantidade' }
+            };
+
+            Plotly.newPlot('grafico-regioes', traces, layout, { responsive: true });
+        }
+
+        // Função para atualizar apropriação
+        function atualizarApropriacao() {
+            const tema = document.getElementById('dropdown-apropriacao').value;
+
+            // Verificar se os dados estão carregados
+            if (!dadosPublicos || !dadosPublicos[tema]) {
+                return;
+            }
+
+            const dadosTema = dadosPublicos[tema];
+
+            // Mapear as chaves para rótulos descritivos
+            const mapeamento = { 'A': 'Maior (A)', 'E': 'Menor (E)', 'N': 'Não Avaliado (N)' };
+            const dadosMapeados = {};
+
+            for (const [key, value] of Object.entries(dadosTema)) {
+                const novaChave = mapeamento[key] || key;
+                dadosMapeados[novaChave] = value;
+            }
+
+            const titulo = temasTitulos[tema];
+            criarGraficoBarras(dadosMapeados, titulo, 'grafico-apropriacao');
+        }
+
+        // Função para atualizar análise qualitativa
+        function atualizarQualitativo() {
+            const coluna = document.getElementById('dropdown-qualitativo').value;
+
+            if (!resultadosAnalises || !resultadosAnalises.campos || !resultadosAnalises.campos[coluna]) {
+                document.getElementById('nuvem-palavras').style.display = 'none';
+                document.getElementById('nuvem-placeholder').style.display = 'block';
+                document.getElementById('nuvem-placeholder').textContent = 'Dados não disponíveis';
+
+                Plotly.newPlot('grafico-sentimentos', [], {
+                    title: 'Dados não disponíveis',
+                    template: 'plotly_white'
+                });
+
+                document.getElementById('resumo-textos').innerHTML =
+                    '<p>Dados não disponíveis. Execute o script de pré-processamento de análises.</p>';
+                return;
+            }
+
+            const dadosCampo = resultadosAnalises.campos[coluna];
+
+            // Nuvem de Palavras - ajustar caminho baseado na rede formadora
+            const arquivoNuvem = dadosCampo.nuvem_palavras;
+            if (arquivoNuvem) {
+                const imgElement = document.getElementById('nuvem-palavras');
+                // Construir caminho: analises/{rede}/nuvens_palavras/{campo}.png
+                const caminhoCompleto = `analises/${redeAtual}/${arquivoNuvem}`;
+                imgElement.src = caminhoCompleto;
+                imgElement.style.display = 'block';
+                document.getElementById('nuvem-placeholder').style.display = 'none';
+
+                imgElement.onerror = function() {
+                    imgElement.style.display = 'none';
+                    document.getElementById('nuvem-placeholder').style.display = 'block';
+                    document.getElementById('nuvem-placeholder').textContent = 'Imagem não encontrada';
+                };
+            } else {
+                document.getElementById('nuvem-palavras').style.display = 'none';
+                document.getElementById('nuvem-placeholder').style.display = 'block';
+            }
+
+            // Gráfico de Sentimentos
+            const distribuicao = dadosCampo.sentimentos.distribuicao;
+            const colorMap = {
+                'Positivo': '#28a745',
+                'Neutro': '#ffc107',
+                'Negativo': '#dc3545'
+            };
+
+            const sentimentos = Object.keys(distribuicao);
+            const quantidades = Object.values(distribuicao);
+            const cores = sentimentos.map(s => colorMap[s] || '#999');
+
+            const trace = {
+                x: sentimentos,
+                y: quantidades,
+                type: 'bar',
+                marker: { color: cores }
+            };
+
+            const layout = {
+                title: 'Análise de Sentimentos',
+                template: 'plotly_white',
+                showlegend: false,
+                height: 400
+            };
+
+            Plotly.newPlot('grafico-sentimentos', [trace], layout, { responsive: true });
+
+            // Resumo com formatação Markdown
+            const resumoFormatado = formatarMarkdown(dadosCampo.resumo);
+            document.getElementById('resumo-textos').innerHTML = resumoFormatado;
+        }
+
+        // Função para carregar todos os gráficos
+        function carregarGraficos() {
+            // Dados Pessoais
+            criarGraficoBarras(dadosPublicos.raca_ds, 'Distribuição por Raça', 'grafico-raca');
+            criarGraficoBarras(dadosPublicos.sexo_ds, 'Distribuição por Sexo', 'grafico-sexo');
+            criarHistograma(dadosPublicos.idade, 'Distribuição de Idade', 'grafico-idade');
+            criarGraficoBarras(dadosPublicos.estado_civil_ds, 'Estado Civil', 'grafico-estado-civil');
+            criarGraficoBarras(dadosPublicos.ident_genero_ds, 'Identidade de Gênero', 'grafico-genero');
+            criarGraficoBarras(dadosPublicos.orientacao_sexual_ds, 'Orientação Sexual', 'grafico-orientacao');
+            criarGraficoBarras(dadosPublicos.tem_nome_social, 'Profissionais com Nome Social', 'grafico-nome-social');
+            criarGraficoBarras(dadosPublicos.aa_tipo_ds, 'Ações Afirmativas', 'grafico-acoes-afirmativas');
+
+            // Formação Acadêmica
+            criarHistograma(dadosPublicos.tempo_graduado, 'Tempo de Graduado (anos)', 'grafico-tempo-graduado');
+            criarGraficoBarras(dadosPublicos.pais_formacao_ds, 'País de Formação', 'grafico-pais-formacao');
+
+            // Especialidades e Títulos
+            criarGraficoBarras(dadosPublicos.rm_rec_cnrm_ds, 'Residências Médicas', 'grafico-residencias');
+            criarGraficoBarras(dadosPublicos.tit_esp_amb_ds, 'Título de Especialista', 'grafico-titulo-especialista');
+            criarGraficoBarras(dadosPublicos.rm_1_esp_medica_ds, 'Área - RM Primária', 'grafico-rm-primaria');
+            criarGraficoBarras(dadosPublicos.rm_2_esp_medica_ds, 'Área - RM Secundária', 'grafico-rm-secundaria');
+            criarGraficoBarras(dadosPublicos.amb_1_esp_medica_ds, 'Área - Título Especialista Primário', 'grafico-titulo-primario');
+            criarGraficoBarras(dadosPublicos.amb_2_esp_medica_ds, 'Área - Título Especialista Secundário', 'grafico-titulo-secundario');
+            criarGraficoBarras(dadosPublicos.curso_nome_limpo, 'Cursos de Aprimoramento', 'grafico-cursos', 550);
+
+            // Distribuição Geográfica
+            criarGraficoRegioes(dadosPublicos.fluxo_regional);
+            criarGraficoBarras(dadosPublicos.regiao_nascimento, 'Região de Nascimento', 'grafico-regiao-nascimento');
+            criarGraficoBarras(dadosPublicos.regiao_vaga, 'Região da Vaga Principal', 'grafico-regiao-vaga');
+
+            // Apropriação inicial
+            atualizarApropriacao();
+
+            // Análise qualitativa inicial
+            atualizarQualitativo();
+        }
+
+        // Variáveis globais para armazenar dados brutos
+        let dadosAnonimizados = null;
+        let dadosFiltrados = null;
+        let redeAtual = 'Todas';
+
+        // Função para processar dados anonimizados e gerar agregações
+        function processarDadosAnonimizados(records, filtroRede = 'Todas') {
+            // Filtrar por rede formadora
+            let recordsFiltrados = records;
+            if (filtroRede !== 'Todas') {
+                recordsFiltrados = records.filter(r => r.rede_formadora === filtroRede);
+            }
+
+            // Atualizar contador de matriculados
+            document.getElementById('total-matriculados').textContent = recordsFiltrados.length.toLocaleString('pt-BR');
+
+            // Função auxiliar para contar valores
+            function contarValores(campo, parseJSON = false) {
+                const contagem = {};
+                recordsFiltrados.forEach(record => {
+                    let valor = record[campo];
+                    if (parseJSON && typeof valor === 'string') {
+                        try {
+                            const obj = JSON.parse(valor);
+                            valor = obj[campo];
+                        } catch (e) {
+                            return;
+                        }
+                    }
+                    if (valor !== null && valor !== undefined && valor !== '') {
+                        contagem[valor] = (contagem[valor] || 0) + 1;
+                    }
+                });
+                return contagem;
+            }
+
+            // Função auxiliar para extrair campo de JSON string
+            function extrairCampoJSON(campoContainer, campoInterno) {
+                const contagem = {};
+                recordsFiltrados.forEach(record => {
+                    const jsonStr = record[campoContainer];
+                    if (jsonStr) {
+                        try {
+                            const obj = JSON.parse(jsonStr);
+                            const valor = obj[campoInterno];
+                            if (valor !== null && valor !== undefined && valor !== '') {
+                                contagem[valor] = (contagem[valor] || 0) + 1;
+                            }
+                        } catch (e) {
+                            // Ignorar erros de parse
+                        }
+                    }
+                });
+                return contagem;
+            }
+
+            // Função auxiliar para coletar valores numéricos
+            function coletarValoresNumericos(campoContainer, campoInterno) {
+                const valores = [];
+                recordsFiltrados.forEach(record => {
+                    const jsonStr = record[campoContainer];
+                    if (jsonStr) {
+                        try {
+                            const obj = JSON.parse(jsonStr);
+                            const valor = obj[campoInterno];
+                            if (valor !== null && valor !== undefined && !isNaN(valor)) {
+                                valores.push(Number(valor));
+                            }
+                        } catch (e) {
+                            // Ignorar erros
+                        }
+                    }
+                });
+                return valores;
+            }
+
+            // Calcular idade a partir de data_nascimento
+            function calcularIdades() {
+                const idades = [];
+                recordsFiltrados.forEach(record => {
+                    const infoPessoais = record.info_pessoais;
+                    if (infoPessoais) {
+                        try {
+                            const obj = JSON.parse(infoPessoais);
+                            const dataNasc = obj.data_nascimento;
+                            if (dataNasc) {
+                                const nascimento = new Date(dataNasc);
+                                const hoje = new Date();
+                                const idade = hoje.getFullYear() - nascimento.getFullYear();
+                                if (idade > 0 && idade < 120) {
+                                    idades.push(idade);
+                                }
+                            }
+                        } catch (e) {
+                            // Ignorar erros
+                        }
+                    }
+                });
+                return idades;
+            }
+
+            // Calcular tempo de graduado
+            function calcularTempoGraduado() {
+                const tempos = [];
+                recordsFiltrados.forEach(record => {
+                    const formacao = record.formacao_academica;
+                    if (formacao) {
+                        try {
+                            const obj = JSON.parse(formacao);
+                            const dataFormacao = obj.data_formacao;
+                            if (dataFormacao) {
+                                const formacaoDate = new Date(dataFormacao);
+                                const hoje = new Date();
+                                const anos = hoje.getFullYear() - formacaoDate.getFullYear();
+                                if (anos >= 0 && anos < 60) {
+                                    tempos.push(anos);
+                                }
+                            }
+                        } catch (e) {
+                            // Ignorar
+                        }
+                    }
+                });
+                return tempos;
+            }
+
+            // Processar nome social
+            function processarNomeSocial() {
+                let comNome = 0;
+                let semNome = 0;
+
+                recordsFiltrados.forEach(record => {
+                    const infoPessoais = record.info_pessoais;
+                    if (infoPessoais) {
+                        try {
+                            const obj = JSON.parse(infoPessoais);
+                            const nomeSocial = obj.nome_social;
+                            if (nomeSocial && nomeSocial.trim() !== '') {
+                                comNome++;
+                            } else {
+                                semNome++;
+                            }
+                        } catch (e) {
+                            semNome++;
+                        }
+                    } else {
+                        semNome++;
+                    }
+                });
+
+                return { 'Sim': comNome, 'Não': semNome };
+            }
+
+            // Extrair cursos do campo vaga_principal_jdata
+            function extrairCursos() {
+                const cursosContagem = {};
+
+                recordsFiltrados.forEach(record => {
+                    const listasSelecao = record.listas_selecao;
+                    if (listasSelecao) {
+                        try {
+                            const obj = JSON.parse(listasSelecao);
+                            const vagaPrincipal = obj.vaga_principal_jdata;
+
+                            if (vagaPrincipal && vagaPrincipal['curso.nome']) {
+                                let cursoNome = vagaPrincipal['curso.nome'];
+                                // Remover numeração do início (ex: "15. ")
+                                cursoNome = cursoNome.replace(/^\d+\.\s*/, '');
+                                cursosContagem[cursoNome] = (cursosContagem[cursoNome] || 0) + 1;
+                            }
+                        } catch (e) {
+                            // Ignorar erros
+                        }
+                    }
+                });
+
+                // Retornar top 25
+                const cursosOrdenados = Object.entries(cursosContagem)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 25);
+
+                const resultado = {};
+                cursosOrdenados.forEach(([nome, count]) => {
+                    resultado[nome] = count;
+                });
+
+                return resultado;
+            }
+
+            // Mapa de estados para regiões
+            const ESTADOS_REGIOES = {
+                'Acre': 'Norte', 'Amapá': 'Norte', 'Amazonas': 'Norte', 'Pará': 'Norte',
+                'Rondônia': 'Norte', 'Roraima': 'Norte', 'Tocantins': 'Norte',
+                'Alagoas': 'Nordeste', 'Bahia': 'Nordeste', 'Ceará': 'Nordeste',
+                'Maranhão': 'Nordeste', 'Paraíba': 'Nordeste', 'Pernambuco': 'Nordeste',
+                'Piauí': 'Nordeste', 'Rio Grande do Norte': 'Nordeste', 'Sergipe': 'Nordeste',
+                'Espírito Santo': 'Sudeste', 'Minas Gerais': 'Sudeste',
+                'Rio de Janeiro': 'Sudeste', 'São Paulo': 'Sudeste',
+                'Paraná': 'Sul', 'Rio Grande do Sul': 'Sul', 'Santa Catarina': 'Sul',
+                'Distrito Federal': 'Centro-Oeste', 'Goiás': 'Centro-Oeste',
+                'Mato Grosso': 'Centro-Oeste', 'Mato Grosso do Sul': 'Centro-Oeste'
+            };
+
+            // Extrair região de nascimento
+            function extrairRegiaoNascimento() {
+                const contagem = {};
+                recordsFiltrados.forEach(record => {
+                    const infoPessoais = record.info_pessoais;
+                    if (infoPessoais) {
+                        try {
+                            const obj = JSON.parse(infoPessoais);
+                            const estadoNasc = obj.rg_uf_ds;
+                            if (estadoNasc) {
+                                const regiao = ESTADOS_REGIOES[estadoNasc] || 'Outros';
+                                contagem[regiao] = (contagem[regiao] || 0) + 1;
+                            }
+                        } catch (e) {
+                            // Ignorar
+                        }
+                    }
+                });
+                return contagem;
+            }
+
+            // Extrair região da vaga
+            function extrairRegiaoVaga() {
+                const contagem = {};
+                recordsFiltrados.forEach(record => {
+                    const listasSelecao = record.listas_selecao;
+                    if (listasSelecao) {
+                        try {
+                            const obj = JSON.parse(listasSelecao);
+                            const vagaPrincipal = obj.vaga_principal_jdata;
+                            if (vagaPrincipal && vagaPrincipal['ibge.no_uf']) {
+                                const estadoVaga = vagaPrincipal['ibge.no_uf'];
+                                const regiao = ESTADOS_REGIOES[estadoVaga] || 'Outros';
+                                contagem[regiao] = (contagem[regiao] || 0) + 1;
+                            }
+                        } catch (e) {
+                            // Ignorar
+                        }
+                    }
+                });
+                return contagem;
+            }
+
+            // Extrair UF de município (formato: "CIDADE - UF")
+            function extrairUFdeMunicipio(municipio) {
+                if (!municipio) return null;
+                const match = municipio.match(/\s-\s([A-Z]{2})$/);
+                return match ? match[1] : null;
+            }
+
+            // Mapa de siglas para nomes completos de estados
+            const SIGLAS_ESTADOS = {
+                'AC': 'Acre', 'AL': 'Alagoas', 'AP': 'Amapá', 'AM': 'Amazonas',
+                'BA': 'Bahia', 'CE': 'Ceará', 'DF': 'Distrito Federal', 'ES': 'Espírito Santo',
+                'GO': 'Goiás', 'MA': 'Maranhão', 'MT': 'Mato Grosso', 'MS': 'Mato Grosso do Sul',
+                'MG': 'Minas Gerais', 'PA': 'Pará', 'PB': 'Paraíba', 'PR': 'Paraná',
+                'PE': 'Pernambuco', 'PI': 'Piauí', 'RJ': 'Rio de Janeiro', 'RN': 'Rio Grande do Norte',
+                'RS': 'Rio Grande do Sul', 'RO': 'Rondônia', 'RR': 'Roraima', 'SC': 'Santa Catarina',
+                'SP': 'São Paulo', 'SE': 'Sergipe', 'TO': 'Tocantins'
+            };
+
+            // Calcular fluxo regional com 4 momentos
+            function calcularFluxoRegional() {
+                // Contar profissionais por região em cada momento
+                const momentos = {
+                    'Nascimento': {},
+                    'Graduação': {},
+                    'CRM': {},
+                    'Vaga': {}
+                };
+
+                recordsFiltrados.forEach(record => {
+                    try {
+                        // 1. Nascimento (de info_pessoais.municipio)
+                        if (record.info_pessoais) {
+                            const objPessoais = JSON.parse(record.info_pessoais);
+                            const municipioNasc = objPessoais.municipio;
+                            const ufSigla = extrairUFdeMunicipio(municipioNasc);
+                            if (ufSigla && SIGLAS_ESTADOS[ufSigla]) {
+                                const estado = SIGLAS_ESTADOS[ufSigla];
+                                const regiao = ESTADOS_REGIOES[estado] || 'Outros';
+                                momentos['Nascimento'][regiao] = (momentos['Nascimento'][regiao] || 0) + 1;
+                            }
+                        }
+
+                        // 2. Graduação (de formacao_academica.municipio_formacao)
+                        if (record.formacao_academica) {
+                            const objFormacao = JSON.parse(record.formacao_academica);
+                            const municipioGrad = objFormacao.municipio_formacao;
+                            const ufSigla = extrairUFdeMunicipio(municipioGrad);
+                            if (ufSigla && SIGLAS_ESTADOS[ufSigla]) {
+                                const estado = SIGLAS_ESTADOS[ufSigla];
+                                const regiao = ESTADOS_REGIOES[estado] || 'Outros';
+                                momentos['Graduação'][regiao] = (momentos['Graduação'][regiao] || 0) + 1;
+                            }
+                        }
+
+                        // 3. CRM (de formacao_academica.uf_crm_ds)
+                        if (record.formacao_academica) {
+                            const objFormacao = JSON.parse(record.formacao_academica);
+                            const estadoCRM = objFormacao.uf_crm_ds;
+                            if (estadoCRM) {
+                                const regiao = ESTADOS_REGIOES[estadoCRM] || 'Outros';
+                                momentos['CRM'][regiao] = (momentos['CRM'][regiao] || 0) + 1;
+                            }
+                        }
+
+                        // 4. Vaga (de listas_selecao.vaga_principal_jdata.ibge.no_uf)
+                        if (record.listas_selecao) {
+                            const objListas = JSON.parse(record.listas_selecao);
+                            const vagaPrincipal = objListas.vaga_principal_jdata;
+                            if (vagaPrincipal && vagaPrincipal['ibge.no_uf']) {
+                                const estadoVaga = vagaPrincipal['ibge.no_uf'];
+                                const regiao = ESTADOS_REGIOES[estadoVaga] || 'Outros';
+                                momentos['Vaga'][regiao] = (momentos['Vaga'][regiao] || 0) + 1;
+                            }
+                        }
+                    } catch (e) {
+                        // Ignorar erros de parse
+                    }
+                });
+
+                // Transformar em formato adequado para gráfico de linha
+                // Array de objetos: {Região, Momento, Quantidade}
+                const resultado = [];
+                const regioes = new Set();
+
+                // Coletar todas as regiões presentes
+                Object.values(momentos).forEach(momentoData => {
+                    Object.keys(momentoData).forEach(regiao => regioes.add(regiao));
+                });
+
+                // Para cada região e momento, criar entrada
+                regioes.forEach(regiao => {
+                    ['Nascimento', 'Graduação', 'CRM', 'Vaga'].forEach(momento => {
+                        resultado.push({
+                            Região: regiao,
+                            Momento: momento,
+                            Quantidade: momentos[momento][regiao] || 0
+                        });
+                    });
+                });
+
+                return resultado;
+            }
+
+            // Retornar objeto com todos os dados agregados
+            return {
+                // Dados Pessoais
+                raca_ds: extrairCampoJSON('info_pessoais', 'raca_ds'),
+                sexo_ds: extrairCampoJSON('info_pessoais', 'sexo_ds'),
+                idade: calcularIdades(),
+                estado_civil_ds: extrairCampoJSON('info_pessoais', 'estado_civil_ds'),
+                ident_genero_ds: extrairCampoJSON('info_pessoais', 'ident_genero_ds'),
+                orientacao_sexual_ds: extrairCampoJSON('info_pessoais', 'orientacao_sexual_ds'),
+                tem_nome_social: processarNomeSocial(),
+                aa_tipo_ds: extrairCampoJSON('listas_selecao', 'aa_flag_ds'),
+
+                // Formação Acadêmica
+                tempo_graduado: calcularTempoGraduado(),
+                pais_formacao_ds: extrairCampoJSON('formacao_academica', 'pais_formacao_ds'),
+
+                // Especialidades
+                rm_rec_cnrm_ds: extrairCampoJSON('listas_selecao', 'rm_rec_cnrm_ds'),
+                tit_esp_amb_ds: extrairCampoJSON('listas_selecao', 'tit_esp_amb_ds'),
+                rm_1_esp_medica_ds: extrairCampoJSON('listas_selecao', 'rm_1_esp_medica_ds'),
+                rm_2_esp_medica_ds: extrairCampoJSON('listas_selecao', 'rm_2_esp_medica_ds'),
+                amb_1_esp_medica_ds: extrairCampoJSON('listas_selecao', 'amb_1_esp_medica_ds'),
+                amb_2_esp_medica_ds: extrairCampoJSON('listas_selecao', 'amb_2_esp_medica_ds'),
+
+                // Cursos
+                curso_nome_limpo: extrairCursos(),
+
+                // Distribuição Geográfica
+                regiao_nascimento: extrairRegiaoNascimento(),
+                regiao_vaga: extrairRegiaoVaga(),
+                fluxo_regional: calcularFluxoRegional(),
+
+                // Apropriação
+                apropriacao_redes: contarValores('apropriacao_redes'),
+                apropriacao_gestao: contarValores('apropriacao_gestao'),
+                apropriacao_regulacao: contarValores('apropriacao_regulacao')
+            };
+        }
+
+        // Função para recarregar todos os gráficos com filtro aplicado
+        async function aplicarFiltro() {
+            const filtroRede = document.getElementById('filtro-rede').value;
+            redeAtual = filtroRede;
+
+            // Processar dados com filtro
+            dadosPublicos = processarDadosAnonimizados(dadosAnonimizados.RECORDS, filtroRede);
+
+            // Carregar análises da rede selecionada
+            try {
+                const caminhoAnalises = `analises/${filtroRede}/resultados_analises.json`;
+                const responseAnalises = await fetch(caminhoAnalises);
+                if (responseAnalises.ok) {
+                    resultadosAnalises = await responseAnalises.json();
+                } else {
+                    console.warn(`Análises não encontradas para ${filtroRede}`);
+                    resultadosAnalises = null;
+                }
+            } catch (e) {
+                console.warn(`Erro ao carregar análises de ${filtroRede}:`, e);
+                resultadosAnalises = null;
+            }
+
+            // Recarregar gráficos
+            carregarGraficos();
+        }
+
+        // Carregar dados do JSON
+        async function carregarDados() {
+            try {
+                // Carregar dados anonimizados da API Vercel
+                const response = await fetch('/api/dados');
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar dados da API');
+                }
+                dadosAnonimizados = await response.json();
+
+                // Processar dados inicialmente sem filtro
+                dadosPublicos = processarDadosAnonimizados(dadosAnonimizados.RECORDS, 'Todas');
+
+                // Tentar carregar resultados de análises da pasta correta (opcional)
+                try {
+                    const responseAnalises = await fetch('analises/Todas/resultados_analises.json');
+                    if (responseAnalises.ok) {
+                        resultadosAnalises = await responseAnalises.json();
+                    }
+                } catch (e) {
+                    console.warn('Análises não encontradas. Execute python processo_analises.py');
+                }
+
+                // Esconder loading e mostrar dashboard
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('dashboard-content').style.display = 'block';
+
+                // Carregar todos os gráficos
+                carregarGraficos();
+
+                // Configurar event listeners para dropdowns
+                document.getElementById('filtro-rede').addEventListener('change', aplicarFiltro);
+                document.getElementById('dropdown-apropriacao').addEventListener('change', atualizarApropriacao);
+                document.getElementById('dropdown-qualitativo').addEventListener('change', atualizarQualitativo);
+
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                const errorDiv = document.getElementById('error-message');
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = `Erro ao carregar dados: ${error.message}. Certifique-se de que o arquivo dados_anonimizados.json está no mesmo diretório do HTML.`;
+            }
+        }
+
+        // Inicializar quando a página carregar
+        window.addEventListener('DOMContentLoaded', carregarDados);
+    </script>
+</body>
+</html>

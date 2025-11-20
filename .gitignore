@@ -1,11 +1,39 @@
 # Dados sensíveis
+*.csv
+dados_sensiveis.json
 dados_anonimizados.json
+data/
+.env.local
+
+# Pasta public (arquivos estão na raiz para Vercel)
+public/
 
 # Arquivos de Cache do Python
 __pycache__/
 *.pyc
+*.py[cod]
+*$py.class
 
 # Ambientes virtuais
 .env
 .venv
 venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak

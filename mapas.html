@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Geográfica - PMM-e</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container-fluid {
+            max-width: 1400px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .map-container {
+            margin-bottom: 30px;
+        }
+
+        .hint-text {
+            text-align: center;
+            color: #6c757d;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+
+        .back-button {
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .back-button button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button button:hover {
+            background-color: #2980b9;
+        }
+
+        .back-button button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .filter-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .matriculados-counter {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .matriculados-counter svg {
+            width: 40px;
+            height: 40px;
+            color: #667eea;
+        }
+
+        .matriculados-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .matriculados-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .matriculados-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            line-height: 1;
+        }
+
+        .filter-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-control label {
+            color: white;
+            font-weight: 600;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .filter-control select {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            background: white;
+            color: #2c3e50;
+            font-weight: 500;
+            cursor: pointer;
+            min-width: 180px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .filter-control select:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Análise Geográfica - PMM-e</h1>
+
+        <!-- Barra de Filtros e Contador -->
+        <div class="filter-bar">
+            <div class="matriculados-counter">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <div class="matriculados-info">
+                    <span class="matriculados-label">Matriculados</span>
+                    <span class="matriculados-number" id="total-matriculados">0</span>
+                </div>
+            </div>
+            <div class="filter-control">
+                <label for="filtro-rede">Rede Formadora:</label>
+                <select id="filtro-rede" class="form-select">
+                    <option value="Todas">Todas</option>
+                    <option value="EBSERH">EBSERH</option>
+                    <option value="PROADI-SUS">PROADI-SUS</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="dropdown-tipo-mapa" class="form-label fw-bold">Selecione o tipo de mapa:</label>
+            <select id="dropdown-tipo-mapa" class="form-select">
+                <option value="vaga_uf">Estado da Vaga Principal</option>
+                <option value="rg_uf_ds">Estado de Nascimento</option>
+                <option value="estado_graduacao">Estado de Graduação</option>
+                <option value="uf_crm_ds">Estado do CRM</option>
+            </select>
+        </div>
+
+        <div id="loading" class="loading">Carregando dados...</div>
+
+        <div id="map-content" style="display: none;">
+            <div class="back-button" id="back-button">
+                <button onclick="voltarParaBrasil()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Voltar para o mapa do Brasil
+                </button>
+            </div>
+
+            <div class="map-container">
+                <div id="mapa-principal"></div>
+            </div>
+
+            <div id="hint" class="hint-text">
+                💡 <strong>Dica:</strong> Selecione "Estado da Vaga Principal" e clique em um estado para ver os municípios com vagas.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let dadosMapas = null;
+        let dadosAnonimizados = null;
+        let geojsonCache = {};
+        let estadoSelecionado = null;
+        let exibindoEstado = false;
+        let redeAtual = 'Todas';
+
+        const ESTADOS_SIGLAS = {
+            'Acre': 'AC', 'Alagoas': 'AL', 'Amapá': 'AP', 'Amazonas': 'AM',
+            'Bahia': 'BA', 'Ceará': 'CE', 'Distrito Federal': 'DF', 'Espírito Santo': 'ES',
+            'Goiás': 'GO', 'Maranhão': 'MA', 'Mato Grosso': 'MT', 'Mato Grosso do Sul': 'MS',
+            'Minas Gerais': 'MG', 'Pará': 'PA', 'Paraíba': 'PB', 'Paraná': 'PR',
+            'Pernambuco': 'PE', 'Piauí': 'PI', 'Rio de Janeiro': 'RJ', 'Rio Grande do Norte': 'RN',
+            'Rio Grande do Sul': 'RS', 'Rondônia': 'RO', 'Roraima': 'RR', 'Santa Catarina': 'SC',
+            'São Paulo': 'SP', 'Sergipe': 'SE', 'Tocantins': 'TO'
+        };
+
+        const SIGLAS_IBGE = {
+            'AC': '12', 'AM': '13', 'AP': '16', 'PA': '15', 'RO': '11', 'RR': '14', 'TO': '17',
+            'AL': '27', 'BA': '29', 'CE': '23', 'MA': '21', 'PB': '25', 'PE': '26', 'PI': '22',
+            'RN': '24', 'SE': '28', 'ES': '32', 'MG': '31', 'RJ': '33', 'SP': '35', 'PR': '41',
+            'RS': '43', 'SC': '42', 'DF': '53', 'GO': '52', 'MT': '51', 'MS': '50'
+        };
+
+        const TITULOS = {
+            'rg_uf_ds': 'Estado de Nascimento dos Profissionais',
+            'estado_graduacao': 'Estado de Graduação dos Profissionais',
+            'uf_crm_ds': 'Estado do CRM dos Profissionais',
+            'vaga_uf': 'Estado da Vaga Principal'
+        };
+
+        async function carregarGeoJSON(url) {
+            if (geojsonCache[url]) {
+                return geojsonCache[url];
+            }
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Erro ao carregar GeoJSON');
+                const geojson = await response.json();
+                geojsonCache[url] = geojson;
+                return geojson;
+            } catch (error) {
+                console.error('Erro ao carregar GeoJSON:', error);
+                return null;
+            }
+        }
+
+        async function criarMapaCalorEstados(dadosDict, titulo) {
+            const url = 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson';
+            const geojson = await carregarGeoJSON(url);
+
+            if (!geojson) {
+                Plotly.newPlot('mapa-principal', [], {
+                    title: 'Erro ao carregar dados do mapa'
+                });
+                return;
+            }
+
+            const locations = [];
+            const zValues = [];
+
+            for (const feature of geojson.features) {
+                const stateName = feature.properties.name;
+                locations.push(stateName);
+                zValues.push(dadosDict[stateName] || 0);
+            }
+
+            const colorscale = [
+                [0.0, "#E0E0E0"],
+                [0.000001, "#dbe9f6"],
+                [1.0, "#0d559f"]
+            ];
+
+            const trace = {
+                type: 'choropleth',
+                geojson: geojson,
+                locations: locations,
+                z: zValues,
+                featureidkey: "properties.name",
+                colorscale: colorscale,
+                showscale: true,
+                colorbar: {
+                    title: {
+                        text: '',
+                        side: 'right'
+                    }
+                },
+                marker: {
+                    line: {
+                        color: 'black',
+                        width: 0.5
+                    }
+                }
+            };
+
+            const layout = {
+                title: titulo,
+                geo: {
+                    fitbounds: "locations",
+                    visible: false
+                },
+                height: 600,
+                margin: { l: 0, r: 0, t: 50, b: 0 },
+                template: 'plotly_white'
+            };
+
+            Plotly.newPlot('mapa-principal', [trace], layout, { responsive: true });
+
+            // Adicionar evento de clique apenas se não estiver exibindo estado
+            if (!exibindoEstado) {
+                document.getElementById('mapa-principal').on('plotly_click', function(data) {
+                    if (data.points && data.points.length > 0) {
+                        const tipoMapa = document.getElementById('dropdown-tipo-mapa').value;
+                        if (tipoMapa === 'vaga_uf') {
+                            const estado = data.points[0].location;
+                            mostrarMapaEstado(estado);
+                        }
+                    }
+                });
+            }
+        }
+
+        async function mostrarMapaEstado(estadoNome) {
+            const sigla = ESTADOS_SIGLAS[estadoNome];
+            const codigoIBGE = SIGLAS_IBGE[sigla];
+
+            if (!sigla || !codigoIBGE) {
+                alert('Estado não reconhecido.');
+                return;
+            }
+
+            const url = `https://raw.githubusercontent.com/tbrugz/geodata-br/master/geojson/geojs-${codigoIBGE}-mun.json`;
+            const geojson = await carregarGeoJSON(url);
+
+            if (!geojson) {
+                alert('Não foi possível carregar o mapa de municípios.');
+                return;
+            }
+
+            // Filtrar vagas do estado
+            const vagasEstado = dadosMapas.vagas_por_municipio.filter(v => v.vaga_uf === estadoNome);
+            const vagasPorMunicipio = {};
+
+            vagasEstado.forEach(vaga => {
+                vagasPorMunicipio[vaga.vaga_municipio] = vaga.curso_nome_limpo;
+            });
+
+            const locations = [];
+            const zValues = [];
+            const hoverText = [];
+
+            for (const feature of geojson.features) {
+                const nomeMunicipio = feature.properties.name;
+                locations.push(nomeMunicipio);
+
+                if (vagasPorMunicipio[nomeMunicipio]) {
+                    zValues.push(1);
+                    const cursos = vagasPorMunicipio[nomeMunicipio];
+                    const cursosHtml = cursos.map(c => `• ${c}`).join('<br>');
+                    hoverText.push(`<b>${nomeMunicipio}</b><br>--- Áreas ---<br>${cursosHtml}`);
+                } else {
+                    zValues.push(0);
+                    hoverText.push(`<b>${nomeMunicipio}</b><br>Sem vagas`);
+                }
+            }
+
+            const trace = {
+                type: 'choropleth',
+                geojson: geojson,
+                locations: locations,
+                z: zValues,
+                featureidkey: "properties.name",
+                colorscale: [[0, '#e0e0e0'], [1, '#28a745']],
+                showscale: false,
+                text: hoverText,
+                hoverinfo: 'text',
+                marker: {
+                    line: {
+                        color: 'black',
+                        width: 0.5
+                    }
+                }
+            };
+
+            const layout = {
+                title: `Municípios com Vagas - ${estadoNome}`,
+                geo: {
+                    fitbounds: "locations",
+                    visible: false
+                },
+                height: 600,
+                margin: { l: 0, r: 0, t: 50, b: 0 },
+                template: 'plotly_white'
+            };
+
+            // Substituir o mapa principal pelo mapa do estado
+            Plotly.newPlot('mapa-principal', [trace], layout, { responsive: true });
+
+            // Mostrar botão de voltar e ocultar hint
+            document.getElementById('back-button').style.display = 'block';
+            document.getElementById('hint').style.display = 'none';
+
+            // Marcar que estamos exibindo estado
+            exibindoEstado = true;
+            estadoSelecionado = estadoNome;
+        }
+
+        function voltarParaBrasil() {
+            exibindoEstado = false;
+            estadoSelecionado = null;
+
+            // Ocultar botão de voltar
+            document.getElementById('back-button').style.display = 'none';
+
+            // Mostrar hint novamente
+            document.getElementById('hint').style.display = 'block';
+
+            // Recarregar o mapa do Brasil
+            atualizarMapaPrincipal();
+        }
+
+        async function atualizarMapaPrincipal() {
+            const tipoMapa = document.getElementById('dropdown-tipo-mapa').value;
+            const titulo = TITULOS[tipoMapa];
+
+            // Resetar estado
+            exibindoEstado = false;
+            estadoSelecionado = null;
+
+            // Ocultar botão de voltar
+            document.getElementById('back-button').style.display = 'none';
+
+            // Mostrar/ocultar hint conforme tipo de mapa
+            document.getElementById('hint').style.display = tipoMapa === 'vaga_uf' ? 'block' : 'none';
+
+            await criarMapaCalorEstados(dadosMapas[tipoMapa], titulo);
+        }
+
+        // Processar dados anonimizados e gerar mapas
+        function processarDadosMapas(records, filtroRede = 'Todas') {
+            // Filtrar por rede formadora
+            let recordsFiltrados = records;
+            if (filtroRede !== 'Todas') {
+                recordsFiltrados = records.filter(r => r.rede_formadora === filtroRede);
+            }
+
+            // Atualizar contador
+            document.getElementById('total-matriculados').textContent = recordsFiltrados.length.toLocaleString('pt-BR');
+
+            // Mapa de estados
+            const ESTADOS_REGIOES = {
+                'Acre': 'Norte', 'Amapá': 'Norte', 'Amazonas': 'Norte', 'Pará': 'Norte',
+                'Rondônia': 'Norte', 'Roraima': 'Norte', 'Tocantins': 'Norte',
+                'Alagoas': 'Nordeste', 'Bahia': 'Nordeste', 'Ceará': 'Nordeste',
+                'Maranhão': 'Nordeste', 'Paraíba': 'Nordeste', 'Pernambuco': 'Nordeste',
+                'Piauí': 'Nordeste', 'Rio Grande do Norte': 'Nordeste', 'Sergipe': 'Nordeste',
+                'Espírito Santo': 'Sudeste', 'Minas Gerais': 'Sudeste',
+                'Rio de Janeiro': 'Sudeste', 'São Paulo': 'Sudeste',
+                'Paraná': 'Sul', 'Rio Grande do Sul': 'Sul', 'Santa Catarina': 'Sul',
+                'Distrito Federal': 'Centro-Oeste', 'Goiás': 'Centro-Oeste',
+                'Mato Grosso': 'Centro-Oeste', 'Mato Grosso do Sul': 'Centro-Oeste'
+            };
+
+            // Siglas para estados
+            const SIGLAS_ESTADOS = {
+                'AC': 'Acre', 'AL': 'Alagoas', 'AP': 'Amapá', 'AM': 'Amazonas',
+                'BA': 'Bahia', 'CE': 'Ceará', 'DF': 'Distrito Federal', 'ES': 'Espírito Santo',
+                'GO': 'Goiás', 'MA': 'Maranhão', 'MT': 'Mato Grosso', 'MS': 'Mato Grosso do Sul',
+                'MG': 'Minas Gerais', 'PA': 'Pará', 'PB': 'Paraíba', 'PR': 'Paraná',
+                'PE': 'Pernambuco', 'PI': 'Piauí', 'RJ': 'Rio de Janeiro', 'RN': 'Rio Grande do Norte',
+                'RS': 'Rio Grande do Sul', 'RO': 'Rondônia', 'RR': 'Roraima', 'SC': 'Santa Catarina',
+                'SP': 'São Paulo', 'SE': 'Sergipe', 'TO': 'Tocantins'
+            };
+
+            function extrairUFdeMunicipio(municipio) {
+                if (!municipio) return null;
+                const match = municipio.match(/\s-\s([A-Z]{2})$/);
+                return match ? match[1] : null;
+            }
+
+            // 1. Estado de Nascimento (rg_uf_ds)
+            const rg_uf_ds = {};
+            recordsFiltrados.forEach(record => {
+                if (record.info_pessoais) {
+                    try {
+                        const obj = JSON.parse(record.info_pessoais);
+                        const estado = obj.rg_uf_ds;
+                        if (estado) {
+                            rg_uf_ds[estado] = (rg_uf_ds[estado] || 0) + 1;
+                        }
+                    } catch (e) {}
+                }
+            });
+
+            // 2. Estado de Graduação (municipio_formacao → UF)
+            const estado_graduacao = {};
+            recordsFiltrados.forEach(record => {
+                if (record.formacao_academica) {
+                    try {
+                        const obj = JSON.parse(record.formacao_academica);
+                        const municipio = obj.municipio_formacao;
+                        const ufSigla = extrairUFdeMunicipio(municipio);
+                        if (ufSigla && SIGLAS_ESTADOS[ufSigla]) {
+                            const estado = SIGLAS_ESTADOS[ufSigla];
+                            estado_graduacao[estado] = (estado_graduacao[estado] || 0) + 1;
+                        }
+                    } catch (e) {}
+                }
+            });
+
+            // 3. Estado do CRM (uf_crm_ds)
+            const uf_crm_ds = {};
+            recordsFiltrados.forEach(record => {
+                if (record.formacao_academica) {
+                    try {
+                        const obj = JSON.parse(record.formacao_academica);
+                        const estado = obj.uf_crm_ds;
+                        if (estado) {
+                            uf_crm_ds[estado] = (uf_crm_ds[estado] || 0) + 1;
+                        }
+                    } catch (e) {}
+                }
+            });
+
+            // 4. Estado da Vaga Principal
+            const vaga_uf = {};
+            const vagas_por_municipio = [];
+            recordsFiltrados.forEach(record => {
+                if (record.listas_selecao) {
+                    try {
+                        const obj = JSON.parse(record.listas_selecao);
+                        const vagaPrincipal = obj.vaga_principal_jdata;
+                        if (vagaPrincipal && vagaPrincipal['ibge.no_uf']) {
+                            const estado = vagaPrincipal['ibge.no_uf'];
+                            vaga_uf[estado] = (vaga_uf[estado] || 0) + 1;
+
+                            // Coletar municípios com vagas
+                            const municipio = vagaPrincipal['ibge.no_municipio'];
+                            const cursoNome = vagaPrincipal['curso.nome'];
+                            if (municipio && cursoNome) {
+                                const cursoLimpo = cursoNome.replace(/^\d+\.\s*/, '');
+
+                                const existente = vagas_por_municipio.find(v =>
+                                    v.vaga_uf === estado && v.vaga_municipio === municipio
+                                );
+
+                                if (existente) {
+                                    if (!existente.curso_nome_limpo.includes(cursoLimpo)) {
+                                        existente.curso_nome_limpo.push(cursoLimpo);
+                                    }
+                                } else {
+                                    vagas_por_municipio.push({
+                                        vaga_uf: estado,
+                                        vaga_municipio: municipio,
+                                        curso_nome_limpo: [cursoLimpo]
+                                    });
+                                }
+                            }
+                        }
+                    } catch (e) {}
+                }
+            });
+
+            return {
+                rg_uf_ds,
+                estado_graduacao,
+                uf_crm_ds,
+                vaga_uf,
+                vagas_por_municipio
+            };
+        }
+
+        // Função para aplicar filtro
+        async function aplicarFiltro() {
+            const filtroRede = document.getElementById('filtro-rede').value;
+            redeAtual = filtroRede;
+
+            // Processar dados com filtro
+            dadosMapas = processarDadosMapas(dadosAnonimizados.RECORDS, filtroRede);
+
+            // Resetar estado se estava exibindo mapa de município
+            if (exibindoEstado) {
+                voltarParaBrasil();
+            } else {
+                // Atualizar mapa atual
+                await atualizarMapaPrincipal();
+            }
+        }
+
+        async function carregarDados() {
+            try {
+                const response = await fetch('/api/dados');
+                if (!response.ok) throw new Error('Erro ao carregar dados da API');
+
+                dadosAnonimizados = await response.json();
+                dadosMapas = processarDadosMapas(dadosAnonimizados.RECORDS, 'Todas');
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('map-content').style.display = 'block';
+
+                // Carregar mapa inicial
+                await atualizarMapaPrincipal();
+
+                // Event listeners
+                document.getElementById('dropdown-tipo-mapa').addEventListener('change', atualizarMapaPrincipal);
+                document.getElementById('filtro-rede').addEventListener('change', aplicarFiltro);
+
+            } catch (error) {
+                document.getElementById('loading').innerHTML =
+                    `<p class="text-danger">Erro ao carregar dados: ${error.message}</p>`;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', carregarDados);
+    </script>
+</body>
+</html>

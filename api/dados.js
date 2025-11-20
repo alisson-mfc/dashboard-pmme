@@ -1,9 +1,10 @@
 // api/dados.js - Serverless Function para servir dados de forma segura
-export default function handler(req, res) {
+export default async function handler(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
 
   // Suporte a OPTIONS para CORS preflight
   if (req.method === 'OPTIONS') {
@@ -12,20 +13,53 @@ export default function handler(req, res) {
   }
 
   try {
-    // Ler dados da variável de ambiente
-    const dados = process.env.DADOS_JSON;
+    const dadosUrl = process.env.DADOS_URL;
+    const githubToken = process.env.GITHUB_TOKEN;
 
-    if (!dados) {
-      console.error('DADOS_JSON não configurado nas variáveis de ambiente');
+    // Verificar configuração
+    if (!dadosUrl) {
+      console.error('DADOS_URL não configurado');
       return res.status(500).json({
-        error: 'Dados não disponíveis',
-        message: 'Configure a variável de ambiente DADOS_JSON'
+        error: 'Configuração incompleta',
+        message: 'DADOS_URL não configurado nas variáveis de ambiente'
       });
     }
 
-    // Parse e retornar JSON
-    const dadosObj = JSON.parse(dados);
-    res.status(200).json(dadosObj);
+    // Preparar headers para GitHub (se for repositório privado)
+    const headers = {
+      'Accept': 'application/json',
+      'User-Agent': 'Vercel-Dashboard-PMMe'
+    };
+
+    if (githubToken) {
+      headers['Authorization'] = `token ${githubToken}`;
+    }
+
+    // Buscar dados do GitHub
+    console.log(`Buscando dados de: ${dadosUrl}`);
+    const response = await fetch(dadosUrl, { headers });
+
+    if (!response.ok) {
+      console.error(`Erro ao buscar dados: ${response.status} ${response.statusText}`);
+
+      if (response.status === 401 || response.status === 403) {
+        return res.status(500).json({
+          error: 'Erro de autenticação',
+          message: 'Verifique se GITHUB_TOKEN está configurado corretamente'
+        });
+      }
+
+      return res.status(500).json({
+        error: 'Erro ao buscar dados',
+        message: `GitHub retornou status ${response.status}`
+      });
+    }
+
+    // Parse e retornar dados
+    const dados = await response.json();
+    console.log('Dados carregados com sucesso');
+
+    res.status(200).json(dados);
 
   } catch (error) {
     console.error('Erro ao processar dados:', error.message);
